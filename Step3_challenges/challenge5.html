@@ -1,0 +1,346 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Challenge 5: Try Full-stack React (Frontend + Backend)</title>
+  <style>
+    :root {
+      --bg: #fff7fb;
+      --card: #fff;
+      --muted: #6b6170;
+      --accent-1: #ff7ab6;
+      --accent-2: #ffb3d9;
+      --accent-3: #ffdfee;
+      --glass: rgba(255, 255, 255, 0.6);
+      --radius: 18px;
+      --max: 1100px;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      color: #332532;
+    }
+
+    html,
+    body {
+      min-height: 100%;
+    }
+
+    body {
+      margin: 0;
+      background: linear-gradient(180deg, var(--accent-3) 0%, var(--bg) 40%);
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      padding: 48px 20px;
+      display: flex;
+      justify-content: center;
+    }
+
+    .wrap {
+      width: 100%;
+      max-width: var(--max);
+      display: grid;
+      gap: 28px;
+    }
+
+    .card {
+      background: var(--card);
+      padding: 20px;
+      border-radius: 14px;
+      border: 1px solid rgba(0, 0, 0, 0.04);
+      box-shadow: 0 8px 20px rgba(100, 40, 80, 0.03);
+    }
+
+    .section-title {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 12px;
+    }
+
+    .section-title h2 {
+      margin: 0;
+      font-size: 18px;
+    }
+
+    ol.steps {
+      padding-left: 18px;
+      margin: 0;
+    }
+
+    ol.steps li {
+      margin: 14px 0;
+    }
+
+    pre.cmd {
+      background: linear-gradient(180deg, #fff 0%, #fff7fb 100%);
+      padding: 12px 14px;
+      border-radius: 10px;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, "Roboto Mono", monospace;
+      font-size: 13px;
+      border: 1px solid rgba(0, 0, 0, 0.04);
+      overflow: auto;
+    }
+
+    .note {
+      font-size: 13px;
+      color: var(--muted);
+      margin-top: 8px;
+    }
+
+    hr.divider {
+      margin: 20px 0;
+      border: none;
+      border-top: 1px dashed rgba(0, 0, 0, 0.06);
+    }
+
+    code.inline {
+      background: rgba(0, 0, 0, 0.03);
+      padding: 2px 6px;
+      border-radius: 6px;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, "Roboto Mono", monospace;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="wrap">
+    <main class="card">
+      <div class="section-title">
+        <h2>Challenge 5: Try Full-stack React (Frontend + Backend)</h2>
+      </div>
+
+      <ol class="steps">
+        <li>
+          <strong>Goal:</strong> Create a React frontend and a Node.js/Express backend with persistent storage using a JSON file.
+        </li>
+
+        <li>
+          <strong>Make sure you’re in your project root:</strong>
+          <pre class="cmd">cd ..</pre>
+        </li>
+
+        <li>
+          <strong>Create a server folder:</strong>
+          <pre class="cmd">mkdir server</pre>
+        </li>
+
+        <li>
+          <strong>Navigate to the server folder:</strong>
+          <pre class="cmd">cd server</pre>
+        </li>
+
+        <li>
+          <strong>Set up the Express backend:</strong>
+          <pre class="cmd">
+npm init -y
+npm install express cors body-parser
+          </pre>
+          <div class="note">This installs <code class="inline">node_modules</code>, <code class="inline">package.json</code>, and <code class="inline">package-lock.json</code> inside the <code class="inline">server</code> folder.</div>
+        </li>
+
+        <li>
+          <strong>Create two files in the server folder:</strong>
+          <pre class="cmd">
+touch index.js
+touch data.json
+          </pre>
+        </li>
+
+        <li>
+          <strong>Add this code to <code class="inline">index.js</code></strong>
+          <pre class="cmd">
+// Basic Express server with persistent storage
+const express = require("express");
+const fs = require("fs");
+const cors = require("cors");
+const bodyParser = require("body-parser");
+const app = express();
+const PORT = 5000;
+
+app.use(cors());
+app.use(bodyParser.json());
+
+// Path to your JSON storage
+const DATA_FILE = "./data.json";
+
+// Read the saved word from the file
+const getSavedWord = () => {
+  if (fs.existsSync(DATA_FILE)) {
+    const data = fs.readFileSync(DATA_FILE);
+    return JSON.parse(data).word || "";
+  }
+  return "";
+};
+
+// Write the word to the file
+const saveWord = (word) => {
+  fs.writeFileSync(DATA_FILE, JSON.stringify({ word }));
+};
+
+// GET the stored word
+app.get("/word", (req, res) => {
+  const word = getSavedWord();
+  res.json({ word });
+});
+
+// POST a new word
+app.post("/word", (req, res) => {
+  const { word } = req.body;
+  if (!word) {
+    return res.status(400).json({ error: "No word provided" });
+  }
+  saveWord(word);
+  res.json({ message: "Word saved!", word });
+});
+
+app.listen(PORT, () => {
+  console.log(`Server running on http://localhost:${PORT}`);
+});
+          </pre>
+        </li>
+
+        <li>
+          <strong>Add this to <code class="inline">data.json</code></strong>
+          <pre class="cmd">{ "word": "" }</pre>
+        </li>
+
+        <li>
+          <strong>Go back to your React frontend:</strong>
+          <pre class="cmd">
+cd ..
+cd my-app
+          </pre>
+        </li>
+
+        <li>
+          <strong>Install Axios in your React app:</strong>
+          <pre class="cmd">npm install axios</pre>
+        </li>
+
+        <li>
+          <strong>Update backend and frontend ports:</strong>
+          <ul>
+            <li>In <code class="inline">server/index.js</code>, change <code class="inline">const PORT = 5000</code> to <code class="inline">5001</code>.</li>
+            <li>In <code class="inline">src/App.js</code>, change the API URL port to <code class="inline">5001</code>.</li>
+          </ul>
+        </li>
+
+        <li>
+          <strong>Replace <code class="inline">App.js</code> with this code:</strong>
+          <pre class="cmd">
+import React, { useState, useEffect } from "react";
+import axios from "axios";
+import "./App.css";
+
+const API_URL = "http://localhost:5000/word";
+
+function App() {
+  const [inputWord, setInputWord] = useState("");
+  const [savedWord, setSavedWord] = useState("");
+
+  useEffect(() => {
+    axios.get(API_URL)
+      .then(res => setSavedWord(res.data.word))
+      .catch(err => console.error("Error loading word:", err));
+  }, []);
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const res = await axios.post(API_URL, { word: inputWord });
+      setSavedWord(res.data.word);
+      setInputWord("");
+    } catch (err) {
+      console.error("Error saving word:", err);
+    }
+  };
+
+  return (
+    &lt;div className="App"&gt;
+      &lt;h1&gt;📝 Persistent Word Saver&lt;/h1&gt;
+
+      &lt;form onSubmit={handleSubmit}&gt;
+        &lt;input
+          type="text"
+          value={inputWord}
+          onChange={(e) =&gt; setInputWord(e.target.value)}
+          placeholder="Type a word"
+        /&gt;
+        &lt;button type="submit"&gt;Save Word&lt;/button&gt;
+      &lt;/form&gt;
+
+      &lt;div className="saved"&gt;
+        &lt;h2&gt;Saved Word:&lt;/h2&gt;
+        &lt;p&gt;{savedWord || "No word saved yet."}&lt;/p&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  );
+}
+
+export default App;
+          </pre>
+        </li>
+
+        <li>
+          <strong>Replace <code class="inline">App.css</code> with this code:</strong>
+          <pre class="cmd">
+.App {
+  text-align: center;
+  padding: 50px;
+  font-family: Arial, sans-serif;
+}
+
+input {
+  padding: 10px;
+  font-size: 16px;
+  width: 200px;
+}
+
+button {
+  margin-left: 10px;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.saved {
+  margin-top: 40px;
+}
+          </pre>
+        </li>
+
+        <li>
+          <strong>Stop any running app</strong>  
+          <pre class="cmd">Ctrl + C</pre>
+        </li>
+
+        <li>
+          <strong>Open a split terminal</strong>  
+          <div class="note">Use <code class="inline">Ctrl+\</code> on Windows/Linux or <code class="inline">Cmd+\</code> on macOS.</div>
+        </li>
+
+        <li>
+          <strong>Run both servers:</strong>
+          <pre class="cmd">
+// In the left terminal (server folder)
+node index.js
+
+// In the right terminal (frontend folder)
+npm start
+          </pre>
+        </li>
+
+        <li>
+          <strong>Questions to explore:</strong>
+          <ul>
+            <li>What else can you do with the backend?</li>
+            <li>Can you modify it to store a list of words instead of just one?</li>
+          </ul>
+        </li>
+
+      </ol>
+    </main>
+  </div>
+</body>
+
+</html>

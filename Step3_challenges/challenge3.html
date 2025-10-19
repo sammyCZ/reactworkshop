@@ -1,0 +1,278 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Challenge 3: Dynamic Custom Cursor</title>
+  <style>
+    :root {
+      --bg: #fff7fb;
+      --card: #fff;
+      --muted: #6b6170;
+      --accent-1: #ff7ab6;
+      --accent-2: #ffb3d9;
+      --accent-3: #ffdfee;
+      --glass: rgba(255, 255, 255, 0.6);
+      --radius: 18px;
+      --max: 1100px;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      color: #332532;
+    }
+
+    html,
+    body {
+      min-height: 100%;
+    }
+
+    body {
+      margin: 0;
+      background: linear-gradient(180deg, var(--accent-3) 0%, var(--bg) 40%);
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      padding: 48px 20px;
+      display: flex;
+      justify-content: center;
+    }
+
+    .wrap {
+      width: 100%;
+      max-width: var(--max);
+      display: grid;
+      gap: 28px;
+    }
+
+    .grid {
+      display: flex;
+      justify-content: center;
+    }
+
+    @media (max-width:920px) {
+      .grid {
+        flex-direction: column;
+      }
+    }
+
+    .card {
+      background: var(--card);
+      padding: 28px;
+      border-radius: 14px;
+      border: 1px solid rgba(0, 0, 0, 0.04);
+      box-shadow: 0 8px 20px rgba(100, 40, 80, 0.03);
+    }
+
+    .section-title {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 12px;
+    }
+
+    .section-title h2 {
+      margin: 0;
+      font-size: 18px;
+    }
+
+    h1 {
+      margin: 0 0 10px;
+      font-size: 22px;
+      letter-spacing: -0.2px;
+    }
+
+    p.lead {
+      margin: 6px 0 0;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    ol.steps {
+      padding-left: 18px;
+      margin: 0;
+    }
+
+    ol.steps li {
+      margin: 14px 0;
+    }
+
+    pre.cmd {
+      background: linear-gradient(180deg, #fff 0%, #fff7fb 100%);
+      padding: 12px 14px;
+      border-radius: 10px;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, "Roboto Mono", monospace;
+      font-size: 13px;
+      border: 1px solid rgba(0, 0, 0, 0.04);
+      overflow: auto;
+    }
+
+    code.inline {
+      background: rgba(0, 0, 0, 0.03);
+      padding: 2px 6px;
+      border-radius: 6px;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, "Roboto Mono", monospace;
+    }
+
+    hr.divider {
+      margin: 20px 0;
+      border: none;
+      border-top: 1px dashed rgba(0, 0, 0, 0.06);
+    }
+
+    .note {
+      font-size: 13px;
+      color: var(--muted);
+      margin-top: 8px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="wrap">
+    <div class="grid">
+      <main class="card">
+        <div class="section-title">
+          <h2>Challenge 3: Dynamic Custom Cursor</h2>
+        </div>
+
+        <p class="lead">
+          Make your React app more interactive by building a custom cursor that changes style when hovering over specific areas.
+        </p>
+
+        <hr class="divider" />
+
+        <ol class="steps">
+          <li><strong>Goal:</strong> Customize the cursor so it changes style (e.g. color, shape, size) when hovering over certain elements.</li>
+
+          <li><strong>Navigate to your React project</strong></li>
+          <pre class="cmd">cd my-app</pre>
+
+          <li><strong>Create a components folder</strong><br>
+            Inside the <code class="inline">src</code> folder, create a folder called <code class="inline">components</code>.
+          </li>
+
+          <li><strong>Create two files inside components:</strong><br>
+            <code class="inline">Cursor.js</code><br>
+            <code class="inline">Cursor.css</code>
+          </li>
+
+          <li><strong>Add this code to Cursor.js</strong></li>
+          <pre class="cmd">
+// src/components/Cursor.js
+import React, { useEffect, useState } from "react";
+import "./Cursor.css"; // We'll create this CSS file for styling
+
+const Cursor = () =&gt; {
+  const [position, setPosition] = useState({ x: 0, y: 0 });
+  const [hovering, setHovering] = useState(false); // Whether we're over a special area
+
+  // Track mouse movement
+  useEffect(() =&gt; {
+    const move = (e) =&gt; {
+      setPosition({ x: e.clientX, y: e.clientY });
+    };
+
+    window.addEventListener("mousemove", move);
+
+    return () =&gt; {
+      window.removeEventListener("mousemove", move);
+    };
+  }, []);
+
+  // Optional: track hover state by listening to custom data attributes
+  useEffect(() =&gt; {
+    const handleMouseOver = (e) =&gt; {
+      const isHoverTarget = e.target.getAttribute("data-cursor") === "hover";
+      setHovering(isHoverTarget);
+    };
+
+    window.addEventListener("mouseover", handleMouseOver);
+
+    return () =&gt; {
+      window.removeEventListener("mouseover", handleMouseOver);
+    };
+  }, []);
+
+  return (
+    &lt;div
+      className={`custom-cursor ${hovering ? "hovering" : ""}`}
+      style={{ left: `${position.x}px`, top: `${position.y}px` }}
+    &gt;&lt;/div&gt;
+  );
+};
+
+export default Cursor;
+          </pre>
+
+          <li><strong>Add this code to Cursor.css</strong></li>
+          <pre class="cmd">
+.custom-cursor {
+  position: fixed;
+  width: 20px;
+  height: 20px;
+  border: 2px solid black;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  pointer-events: none; /* So the cursor doesn't block interactions */
+  z-index: 9999;
+  transition: all 0.2s ease;
+  mix-blend-mode: difference; /* Cool effect on light backgrounds */
+}
+
+/* When hovering over specific targets */
+.custom-cursor.hovering {
+  background-color: black;
+  width: 40px;
+  height: 40px;
+  border: none;
+}
+          </pre>
+
+          <li><strong>Update your App.js</strong><br>
+            Comment out or delete your current <code class="inline">App.js</code> and add this code:
+          </li>
+          <pre class="cmd">
+// src/App.js
+import React from "react";
+import Cursor from "./components/Cursor";
+import "./App.css";
+
+function App() {
+  return (
+    &lt;div className="App"&gt;
+      {/* Load our custom cursor */}
+      &lt;Cursor /&gt;
+
+      &lt;h1&gt;Custom Cursor Demo&lt;/h1&gt;
+
+      &lt;div style={{ marginTop: "50px" }}&gt;
+        &lt;button data-cursor="hover"&gt;Hover over me&lt;/button&gt;
+      &lt;/div&gt;
+
+      &lt;div style={{ marginTop: "50px" }}&gt;
+        &lt;p&gt;
+          Normal paragraph. Cursor should be small here.
+        &lt;/p&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  );
+}
+
+export default App;
+          </pre>
+
+          <li><strong>Run your React app</strong></li>
+          <pre class="cmd">npm start</pre>
+
+          <li><strong>9. Experiment!</strong><br>
+            Try changing the cursor’s size, color, or even shape. You can also render an emoji as your cursor for fun!
+          </li>
+        </ol>
+
+        <p class="note">
+          Close the app by pressing Ctrl+C on Mac/Linux/Windows devices or in GitHub Codespaces.
+        </p>
+      </main>
+    </div>
+  </div>
+</body>
+
+</html>

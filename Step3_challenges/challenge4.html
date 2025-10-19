@@ -1,0 +1,469 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Challenge 4: Creating a Navbar</title>
+  <style>
+    :root {
+      --bg: #fff7fb;
+      --card: #fff;
+      --muted: #6b6170;
+      --accent-1: #ff7ab6;
+      --accent-2: #ffb3d9;
+      --accent-3: #ffdfee;
+      --glass: rgba(255, 255, 255, 0.6);
+      --radius: 18px;
+      --max: 1100px;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      color: #332532;
+    }
+
+    html,
+    body {
+      min-height: 100%;
+    }
+
+    body {
+      margin: 0;
+      background: linear-gradient(180deg, var(--accent-3) 0%, var(--bg) 40%);
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      padding: 48px 20px;
+      display: flex;
+      justify-content: center;
+    }
+
+    .wrap {
+      width: 100%;
+      max-width: var(--max);
+      display: grid;
+      gap: 28px;
+    }
+
+    .grid {
+      display: flex;
+      justify-content: center;
+    }
+
+    @media (max-width:920px) {
+      .grid {
+        flex-direction: column;
+      }
+    }
+
+    .card {
+      background: var(--card);
+      padding: 28px;
+      border-radius: 14px;
+      border: 1px solid rgba(0, 0, 0, 0.04);
+      box-shadow: 0 8px 20px rgba(100, 40, 80, 0.03);
+    }
+
+    .section-title {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 12px;
+    }
+
+    .section-title h2 {
+      margin: 0;
+      font-size: 18px;
+    }
+
+    h1 {
+      margin: 0 0 10px;
+      font-size: 22px;
+      letter-spacing: -0.2px;
+    }
+
+    p.lead {
+      margin: 6px 0 0;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    ol.steps {
+      padding-left: 18px;
+      margin: 0;
+    }
+
+    ol.steps li {
+      margin: 14px 0;
+    }
+
+    pre.cmd {
+      background: linear-gradient(180deg, #fff 0%, #fff7fb 100%);
+      padding: 12px 14px;
+      border-radius: 10px;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, "Roboto Mono", monospace;
+      font-size: 13px;
+      border: 1px solid rgba(0, 0, 0, 0.04);
+      overflow: auto;
+    }
+
+    code.inline {
+      background: rgba(0, 0, 0, 0.03);
+      padding: 2px 6px;
+      border-radius: 6px;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, "Roboto Mono", monospace;
+    }
+
+    hr.divider {
+      margin: 20px 0;
+      border: none;
+      border-top: 1px dashed rgba(0, 0, 0, 0.06);
+    }
+
+    .note {
+      font-size: 13px;
+      color: var(--muted);
+      margin-top: 8px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="wrap">
+    <div class="grid">
+      <main class="card">
+        <div class="section-title">
+          <h2>Challenge 4: Creating a Navbar</h2>
+        </div>
+
+        <p class="lead">
+          Build a responsive Navbar in React using react-router-dom, react-icons, and styled-components.
+        </p>
+
+        <hr class="divider" />
+
+        <ol class="steps">
+          <li><strong>Navigate to your React project</strong></li>
+          <pre class="cmd">cd my-app</pre>
+
+          <li><strong>Install dependencies</strong></li>
+          <pre class="cmd">npm i react-router-dom react-icons styled-components@latest</pre>
+
+          <li><strong>Why each one?</strong>
+            <ul>
+              <li><code class="inline">react-router-dom</code>: For routing between pages/components.</li>
+              <li><code class="inline">react-icons</code>: Provides ready-to-use icons like the hamburger menu.</li>
+              <li><code class="inline">styled-components</code>: CSS-in-JS library to style components.</li>
+            </ul>
+          </li>
+
+          <li><strong>Create folders & files</strong>
+            <ul>
+              <li>Inside <code class="inline">src</code> create <code class="inline">components</code> → <code class="inline">NavBar</code></li>
+              <li>Inside <code class="inline">NavBar</code> create <code class="inline">index.js</code> and <code class="inline">NavBarElements.js</code></li>
+            </ul>
+          </li>
+
+          <li><strong>Navbar component (index.js)</strong></li>
+          <pre class="cmd">
+// src/components/NavBar/index.js
+import React from "react";
+import {
+  Nav,
+  NavLink,
+  Bars,
+  NavMenu,
+  NavBtn,
+  NavBtnLink,
+} from "./NavbarElements";
+
+const Navbar = () =&gt; {
+  return (
+    &lt;&gt;
+      &lt;Nav&gt;
+        &lt;Bars /&gt;
+        &lt;NavMenu&gt;
+          &lt;NavLink to="/about"&gt;About&lt;/NavLink&gt;
+          &lt;NavLink to="/events"&gt;Events&lt;/NavLink&gt;
+          &lt;NavLink to="/annual"&gt;Annual Report&lt;/NavLink&gt;
+          &lt;NavLink to="/team"&gt;Teams&lt;/NavLink&gt;
+          &lt;NavLink to="/blogs"&gt;Blogs&lt;/NavLink&gt;
+          &lt;NavLink to="/sign-up"&gt;Sign Up&lt;/NavLink&gt;
+        &lt;/NavMenu&gt;
+        &lt;NavBtn&gt;
+          &lt;NavBtnLink to="/signin"&gt;Sign In&lt;/NavBtnLink&gt;
+        &lt;/NavBtn&gt;
+      &lt;/Nav&gt;
+    &lt;/&gt;
+  );
+};
+
+export default Navbar;
+          </pre>
+
+          <li><strong>Navbar styling (NavBarElements.js)</strong></li>
+          <pre class="cmd">
+import { FaBars } from "react-icons/fa";
+import { NavLink as Link } from "react-router-dom";
+import styled from "styled-components";
+
+export const Nav = styled.nav`
+    background: #63d471;
+    height: 85px;
+    display: flex;
+    justify-content: space-between;
+    padding: 0.2rem calc((100vw - 1000px) / 2);
+    z-index: 12;
+`;
+
+export const NavLink = styled(Link)`
+    color: #808080;
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    padding: 0 1rem;
+    height: 100%;
+    cursor: pointer;
+
+    &.active {
+        color: #000000;
+    }
+`;
+
+export const Bars = styled(FaBars)`
+    display: none;
+    color: #808080;
+
+    @media screen and (max-width: 768px) {
+        display: block;
+        position: absolute;
+        top: 0;
+        right: 0;
+        transform: translate(-100%, 75%);
+        font-size: 1.8rem;
+        cursor: pointer;
+    }
+`;
+
+export const NavMenu = styled.div`
+    display: flex;
+    align-items: center;
+    margin-right: -24px;
+
+    @media screen and (max-width: 768px) {
+        display: none;
+    }
+`;
+
+export const NavBtn = styled.nav`
+    display: flex;
+    align-items: center;
+    margin-right: 24px;
+
+    @media screen and (max-width: 768px) {
+        display: none;
+    }
+`;
+
+export const NavBtnLink = styled(Link)`
+    border-radius: 4px;
+    background: #808080;
+    padding: 10px 22px;
+    color: #000000;
+    outline: none;
+    border: none;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+    text-decoration: none;
+    margin-left: 24px;
+
+    &:hover {
+        background: #fff;
+        color: #808080;
+    }
+`;
+          </pre>
+
+          <li><strong>Create pages inside src/pages</strong>
+            <ul>
+              <li>about.js, annual.js, blogs.js, events.js, index.js, signup.js, team.js</li>
+            </ul>
+          </li>
+
+          <li><strong>Page: about.js</strong></li>
+          <pre class="cmd">
+// pages/about.js
+import React from "react";
+
+const About = () =&gt; {
+  return (
+    &lt;div style={{ display: "flex", justifyContent: "centre", alignItems: "centre", height: "100vh" }}&gt;
+      &lt;h1&gt;Feel free to check out this guide on GeeksforGeeks!&lt;/h1&gt;
+    &lt;/div&gt;
+  );
+};
+
+export default About;
+          </pre>
+
+          <li><strong>Page: annual.js</strong></li>
+          <pre class="cmd">
+// pages/annual.js
+import React from "react";
+
+const AnnualReport = () =&gt; {
+  return (
+    &lt;div style={{ display: "flex", justifyContent: "centre", alignItems: "centre", height: "100vh" }}&gt;
+      &lt;h1&gt;Annual Report&lt;/h1&gt;
+    &lt;/div&gt;
+  );
+};
+
+export default AnnualReport;
+          </pre>
+
+          <li><strong>Page: blogs.js</strong></li>
+          <pre class="cmd">
+// pages/blogs.js
+import React from "react";
+
+const Blogs = () =&gt; {
+  return (
+    &lt;div style={{ display: "flex", justifyContent: "centre", alignItems: "centre", height: "100vh" }}&gt;
+      &lt;h1&gt;Welcome to Your Blog&lt;/h1&gt;
+    &lt;/div&gt;
+  );
+};
+
+export default Blogs;
+          </pre>
+
+          <li><strong>Page: events.js</strong></li>
+          <pre class="cmd">
+// pages/events.js
+import React from "react";
+
+const Events = () =&gt; {
+  return (
+    &lt;div style={{ display: "flex", justifyContent: "centre", alignItems: "centre", height: "100vh" }}&gt;
+      &lt;h1&gt;Welcome to Your Events&lt;/h1&gt;
+    &lt;/div&gt;
+  );
+};
+
+export default Events;
+          </pre>
+
+          <li><strong>Page: index.js (Home)</strong></li>
+          <pre class="cmd">
+// pages/index.js
+import React from 'react';
+
+const Home = () =&gt; {
+  return (
+    &lt;div style={{ display: 'flex', justifyContent: 'centre', alignItems: 'centre', height: '100vh' }}&gt;
+      &lt;h1&gt;Welcome to Your App&lt;/h1&gt;
+    &lt;/div&gt;
+  );
+};
+
+export default Home;
+          </pre>
+
+          <li><strong>Page: signup.js</strong></li>
+          <pre class="cmd">
+// pages/signup.js
+import React from "react";
+
+const SignUp = () =&gt; {
+  return (
+    &lt;div style={{ display: "flex", justifyContent: "centre", alignItems: "centre", height: "100vh" }}&gt;
+      &lt;h1&gt;Sign Up&lt;/h1&gt;
+    &lt;/div&gt;
+  );
+};
+
+export default SignUp;
+          </pre>
+
+          <li><strong>Page: team.js</strong></li>
+          <pre class="cmd">
+// pages/team.js
+import React from "react";
+
+const Teams = () =&gt; {
+  return (
+    &lt;div style={{ display: "flex", justifyContent: "centre", alignItems: "centre", height: "100vh" }}&gt;
+      &lt;h1&gt;Welcome to Your Team&lt;/h1&gt;
+    &lt;/div&gt;
+  );
+};
+
+export default Teams;
+          </pre>
+
+          <li><strong>Update src/index.js</strong></li>
+          <pre class="cmd">
+// src/index.js
+import React from "react";
+import ReactDOM from "react-dom/client";
+import "./index.css";
+import App from "./App";
+
+const root = ReactDOM.createRoot(document.getElementById("root"));
+
+root.render(
+  &lt;React.StrictMode&gt;
+    &lt;App /&gt;
+  &lt;/React.StrictMode&gt;
+);
+          </pre>
+
+          <li><strong>Update App.js with Navbar & Routes</strong></li>
+          <pre class="cmd">
+// src/App.js
+import React from "react";
+import "./App.css";
+import Navbar from "./components/NavBar";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Home from "./pages";
+import About from "./pages/about";
+import Events from "./pages/events";
+import AnnualReport from "./pages/annual";
+import Teams from "./pages/team";
+import Blogs from "./pages/blogs";
+import SignUp from "./pages/signup";
+
+function App() {
+  return (
+    &lt;Router&gt;
+      &lt;Navbar /&gt;
+      &lt;Routes&gt;
+        &lt;Route path="/" element={<Home />} /&gt;
+        &lt;Route path="/about" element={<About />} /&gt;
+        &lt;Route path="/events" element={<Events />} /&gt;
+        &lt;Route path="/annual" element={<AnnualReport />} /&gt;
+        &lt;Route path="/team" element={<Teams />} /&gt;
+        &lt;Route path="/blogs" element={<Blogs />} /&gt;
+        &lt;Route path="/sign-up" element={<SignUp />} /&gt;
+      &lt;/Routes&gt;
+    &lt;/Router&gt;
+  );
+}
+
+export default App;
+          </pre>
+
+          <li><strong>Run your app</strong></li>
+          <pre class="cmd">npm start</pre>
+
+          <li><strong>Tip:</strong> element={<Component />} in &lt;Route&gt; tells React Router which component to render.</li>
+          <li><strong>Experiment:</strong> Try adding a dropdown menu or customizing styling!</li>
+        </ol>
+
+        <p class="note">
+          Close the app by pressing Ctrl+C on Mac/Linux/Windows devices or GitHub Codespaces.
+        </p>
+      </main>
+    </div>
+  </div>
+</body>
+
+</html>

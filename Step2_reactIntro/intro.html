@@ -1,0 +1,371 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Workshop Introduction Guide</title>
+    <style>
+        :root {
+            --bg: #fff7fb;
+            --card: #fff;
+            --muted: #6b6170;
+            --accent-1: #ff7ab6;
+            --accent-2: #ffb3d9;
+            --accent-3: #ffdfee;
+            --glass: rgba(255, 255, 255, 0.6);
+            --radius: 18px;
+            --max: 1100px;
+            font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+            color: #332532;
+        }
+
+        html,
+        body {
+            min-height: 100%;
+        }
+
+        body {
+            margin: 0;
+            background: linear-gradient(180deg, var(--accent-3) 0%, var(--bg) 40%);
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            padding: 48px 20px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .wrap {
+            width: 100%;
+            max-width: var(--max);
+            display: grid;
+            gap: 28px;
+        }
+
+        header.hero {
+            background: linear-gradient(135deg, rgba(255, 122, 182, 0.12), rgba(255, 179, 217, 0.08));
+            border-radius: var(--radius);
+            padding: 40px 36px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            gap: 16px;
+            box-shadow: 0 8px 30px rgba(109, 70, 94, 0.08);
+            border: 1px solid rgba(255, 122, 182, 0.12);
+        }
+
+        .logo {
+            width: 80px;
+            height: 80px;
+            border-radius: 16px;
+            background: linear-gradient(135deg, var(--accent-1), var(--accent-2));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 700;
+            font-size: 18px;
+            flex: 0 0 80px;
+            box-shadow: 0 6px 18px rgba(255, 122, 182, 0.22), inset 0 -6px 12px rgba(0, 0, 0, 0.06);
+        }
+
+        h1 {
+            margin: 0;
+            font-size: 22px;
+            letter-spacing: -0.2px;
+        }
+
+        p.lead {
+            margin: 6px 0 0;
+            color: var(--muted);
+            font-size: 14px;
+        }
+
+        .grid {
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        @media (max-width:920px) {
+            .grid {
+                flex-direction: column;
+            }
+        }
+
+        .card {
+            background: var(--card);
+            padding: 20px;
+            border-radius: 14px;
+            border: 1px solid rgba(0, 0, 0, 0.04);
+            box-shadow: 0 8px 20px rgba(100, 40, 80, 0.03);
+        }
+
+        .section-title {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 12px;
+        }
+
+        .section-title h2 {
+            text-align: center;
+            font-size: 20px;
+            font-weight: 600;
+            padding: 12px 16px;
+            border-radius: 12px;
+            background: linear-gradient(90deg, var(--accent-3), var(--bg));
+            color: #332532;
+            box-shadow: 0 4px 10px rgba(255, 122, 182, 0.1);
+            border: 1px solid rgba(255, 122, 182, 0.2);
+            margin: 0;
+        }
+
+        .section-title .small {
+            font-size: 13px;
+            color: var(--muted);
+        }
+
+        ol.steps {
+            padding-left: 18px;
+            margin: 0;
+        }
+
+        ol.steps li {
+            margin: 14px 0;
+        }
+
+        pre.cmd {
+            background: linear-gradient(180deg, #fff 0%, #fff7fb 100%);
+            padding: 12px 14px;
+            border-radius: 10px;
+            font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, "Roboto Mono", monospace;
+            font-size: 13px;
+            border: 1px solid rgba(0, 0, 0, 0.04);
+            overflow: auto;
+        }
+
+        .note {
+            /* font-size: 13px;
+            color: var(--muted);
+            margin-top: 8px; */
+            font-size: 13px;
+            color: #4b3f4a;
+            background: #fff0fa;
+            border-left: 4px solid var(--accent-1);
+            padding: 12px 16px;
+            border-radius: 10px;
+            margin-top: 12px;
+            position: relative;
+        }
+
+        ul.tips {
+            padding-left: 18px;
+            margin: 10px 0;
+        }
+
+        ul.tips li {
+            margin: 8px 0;
+            color: var(--muted);
+            font-size: 14px;
+        }
+
+        hr.divider {
+            margin: 20px 0;
+            border: none;
+            border-top: 1px dashed rgba(0, 0, 0, 0.06);
+        }
+
+        code.inline {
+            background: rgba(0, 0, 0, 0.03);
+            padding: 2px 6px;
+            border-radius: 6px;
+            font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, "Roboto Mono", monospace;
+        }
+
+        h4.platform {
+            display: inline-block;
+            font-size: 16px;
+            font-weight: 600;
+            margin: 20px 0 10px;
+            padding: 4px 10px;
+            border-radius: 8px;
+            box-shadow: inset 0 -1px 0 rgba(0, 0, 0, 0.05);
+        }
+
+        h4.platform.mac {
+            background-color: #e8f5ff;
+            color: #3178c6;
+        }
+
+        h4.platform.windows {
+            background-color: #e9f8ef;
+            color: #2d7a46;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="wrap">
+        <header class="hero">
+            <div class="logo">Frontera Devs</div>
+            <div>
+                <h1>Workshop Guide</h1>
+                <p class="lead">Introduction to using React</p>
+            </div>
+        </header>
+
+        <div class="grid">
+            <main class="card">
+                <!-- STEP 1: Open Project Folder -->
+                <section aria-labelledby="step1">
+                    <h3 id="step1">Step 1: Open Project Folder</h3>
+                    <ol class="steps">
+                        <!-- 1 -->
+                        <li>
+                            <strong>Open your code editor (VS Code) or GitHub</strong>
+                            <pre
+                                class="cmd">On VS Code: File -> Open -> Find the folder you just created during the Pre-Workshop Installation Guide</pre>
+                            <img src="img/1.gif" style="display:block; margin:12px auto; width:80%; height:auto;" />
+                        </li>
+                    </ol>
+                </section>
+                <hr class="divider" />
+
+                <!-- STEP 2: Observation over React -->
+                <section aria-labelledby="step2">
+                    <h3 id="step2">Step 2: Observation over React</h3>
+                    <ol class="steps">
+                        <!-- 1 -->
+                        <li>
+                        <strong>Open the index.html file</strong>
+                            <pre class="cmd">Inside the public folder, open the index.html file.</pre>
+                            <pre class="note">React is called a single-page application.
+In other words, React is loading the entire app on this index.html page.</pre>
+                            <img src="img/2.png" style="display:block; margin:12px auto; width:80%; height:auto;" />
+                            <pre class="cmd">Look for the line <code class="inline">&ltdiv id="root&gt&lt/div&gt</code>.</pre>
+                            <pre class="note">This is line is where all the feature code is put together and replaces this <code class="inline">&ltdiv id="root&gt&lt/div&gt</code>
+line with your whole app.</pre>
+                            <img src="img/3.png" style="display:block; margin:12px auto; width:80%; height:auto;" />
+                        </li>
+                        <!-- 2 -->
+                        <li>
+                            <strong>Understand Root Rendering</strong>
+                                <pre class="cmd">Inside the src folder, open the index.js file.
+Look for the line: <code class="inline">const root = ReactDom.createRoot(document.getElementbyId(‘root’));</code>
+(Line 7 on VS Code.)</pre>
+                                <pre class="note">This line tells the computer to look for the documents element called "root"</pre>
+                                <img src="img/4.png" style="display:block; margin:12px auto; width:80%; height:auto;" />
+                                
+                                <pre class="cmd">Look at the next 4 lines: <code class="inline">root.render&#123;...</code></pre>
+                                <pre class="note">Here, we are declaring the root, which will be rendering the app.</pre>
+                                <img src="img/5.png" style="display:block; margin:12px auto; width:80%; height:auto;" />
+                                
+                                <pre class="cmd">Inside the src folder, open the <code class="inline">App.js</code>.
+Look at the return function. We can see that <code class="inline">App.js</code> is returning html code to ‘index.html’.</pre>
+                                <pre class="note">What does this mean? In essence, React is really a fancy way to return html code! This means that you can add 
+different components and styling pages i.e. css files to your project and they should all be 
+rendered together thanks to your ‘index.html’ file. </pre>
+                                <img src="img/6.png" style="display:block; margin:12px auto; width:80%; height:auto;" />
+                            </li>
+                    </ol>
+                </section>
+                <hr class="divider" />
+
+                <!-- STEP 3: Launch the App -->
+                <section aria-labelledby="step3">
+                    <h3 id="step3">Step 3: Launch the App</h3>
+                    <ol class="steps">
+                        <!-- 1 -->
+                        <li>
+                        <strong>Open a New Terminal</strong>
+                            <pre class="cmd">On VS Code: Terminal -> New Terminal.
+On GitHub: Ctrl+Shift+`</pre>
+                            <img src="img/7.png" style="display:block; margin:12px auto; width:80%; height:auto;" />
+
+                            <pre class="cmd">Navigate to your my-app folder using the command: cd my-app</pre>
+                            <img src="img/8.png" style="display:block; margin:12px auto; width:80%; height:auto;" />
+
+                            <pre class="cmd">Launch the app using the command: npm start </pre>
+                            <img src="img/9.png" style="display:block; margin:12px auto; width:80%; height:auto;" />
+
+                        </li>
+                    </ol>
+                </section>
+                <hr class="divider" />
+
+                <!-- STEP 4: Customize the App -->
+                <section aria-labelledby="step4">
+                    <h3 id="step4">Step 4: Customize the App</h3>
+                    <ol class="steps">
+                        <!-- 1 -->
+                        <li>
+                            <strong>Make a New Header</strong>
+                            <pre class="cmd">Inside the App.js file, look at the return function. 
+In the return function, create a header tag anywhere in the page using the following JavaScript code: &lt;h1&gt;Your text here&lt;/h1&gt;</pre>
+                            <img src="img/10.png" style="display:block; margin:12px auto; width:80%; height:auto;" />
+                            <img src="img/11.png" style="display:block; margin:12px auto; width:80%; height:auto;" />
+                        </li>
+
+                        <!-- 2 -->
+                        <li>
+                            <strong>Add a Picture</strong>
+                            <pre class="cmd">Look up a picture you want to add to your App. 
+Copy the image address. We’re going to add this underneath the header we just made.</pre>
+                        <pre class="cmd">Under the header, add the Javascript code:
+
+&lt;img
+src=&quot;link of image address here&quot;
+alt=&quot;Text shown if image fails to load&quot;
+style=&#123;&#123; 
+	width: &quot;100%&quot;, 
+	maxWidth: &quot;600px&quot;,
+	height: &quot;auto&quot;
+&#125;&#125; /&gt;</pre>
+                        <img src="img/12.png" style="display:block; margin:12px auto; width:80%; height:auto;" />
+                        <img src="img/13.png" style="display:block; margin:12px auto; width:80%; height:auto;" />
+                        </li>
+
+                        <!-- 3 -->
+                        <li>
+                            <strong>Change the Background Color</strong>
+
+                            <pre class="cmd">Inside the src folder, go to the App.css file. </pre>
+                            <pre class="note">App.css is our styling page.
+                                
+In React, a .css file is used to define styles (like colors, fonts, and layout), which controls how your components look.
+You can create your own .css file and import it into your component to apply those styles using class names.
+This keeps your styling separate from your JavaScript logic, making your code cleaner and easier 
+to manage.</pre>
+                            <img src="img/14.png" style="display:block; margin:12px auto; width:80%; height:auto;" />
+                            <pre class="cmd">Go to the .App-header class.
+Delete the default background color and insert your color of choice.
+
+Tip: You can type the color or look for the hex value on Google. </pre>
+                            <img src="img/15.png" style="display:block; margin:12px auto; width:80%; height:auto;" />
+                            <img src="img/16.png" style="display:block; margin:12px auto; width:80%; height:auto;" />
+                        </li>
+                    </ol>
+                </section>
+                <hr class="divider" />
+                
+                <!-- Your Turn -->
+                <section aria-labelledby="step5">
+                    <h3 id="step5">Step 5: Choose a Challenge</h3>
+                    <ol>
+                        <pre class="cmd">Now it’s your turn! Choose a challenge (or as many as you want).
+Complete it by the end of the workshop. 
+The challenges progress in difficulty as you go.
+
+We're here to help so let us know if you get stuck!</pre>
+                    </ol>
+                </section>
+                <hr class="divider" />
+            </main>
+        </div>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,235 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Challenge 2: Dynamic Color-Changing Background</title>
+  <style>
+    :root {
+      --bg: #fff7fb;
+      --card: #fff;
+      --muted: #6b6170;
+      --accent-1: #ff7ab6;
+      --accent-2: #ffb3d9;
+      --accent-3: #ffdfee;
+      --glass: rgba(255, 255, 255, 0.6);
+      --radius: 18px;
+      --max: 1100px;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      color: #332532;
+    }
+
+    html,
+    body {
+      min-height: 100%;
+    }
+
+    body {
+      margin: 0;
+      background: linear-gradient(180deg, var(--accent-3) 0%, var(--bg) 40%);
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      padding: 48px 20px;
+      display: flex;
+      justify-content: center;
+    }
+
+    .wrap {
+      width: 100%;
+      max-width: var(--max);
+      display: grid;
+      gap: 28px;
+    }
+
+    .card {
+      background: var(--card);
+      padding: 20px;
+      border-radius: 14px;
+      border: 1px solid rgba(0, 0, 0, 0.04);
+      box-shadow: 0 8px 20px rgba(100, 40, 80, 0.03);
+    }
+
+    .section-title {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 12px;
+    }
+
+    .section-title h2 {
+      margin: 0;
+      font-size: 18px;
+    }
+
+    ol.steps {
+      padding-left: 18px;
+      margin: 0;
+    }
+
+    ol.steps li {
+      margin: 14px 0;
+    }
+
+    pre.cmd {
+      background: linear-gradient(180deg, #fff 0%, #fff7fb 100%);
+      padding: 12px 14px;
+      border-radius: 10px;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, "Roboto Mono", monospace;
+      font-size: 13px;
+      border: 1px solid rgba(0, 0, 0, 0.04);
+      overflow: auto;
+    }
+
+    .note {
+      font-size: 13px;
+      color: var(--muted);
+      margin-top: 8px;
+    }
+
+    hr.divider {
+      margin: 20px 0;
+      border: none;
+      border-top: 1px dashed rgba(0, 0, 0, 0.06);
+    }
+
+    code.inline {
+      background: rgba(0, 0, 0, 0.03);
+      padding: 2px 6px;
+      border-radius: 6px;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, "Roboto Mono", monospace;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="wrap">
+    <main class="card">
+      <div class="section-title">
+        <h2>Challenge 2: Dynamic Color-Changing Background</h2>
+      </div>
+
+      <ol class="steps">
+        <li>
+          <strong>Goal:</strong> Let the user click a button that randomly changes the background color of the page.
+        </li>
+
+        <li>
+          <strong>Navigate to your React project</strong>
+          <pre class="cmd">cd my-app</pre>
+        </li>
+
+        <li>
+          <strong>Create the component files</strong>
+          <pre class="cmd">Inside the <code class="inline">src</code> folder, create a folder called <code class="inline">components</code>.
+Inside it, create two files:
+1. <code class="inline">ColorChanger.js</code>
+2. <code class="inline">ColorChanger.css</code></pre>
+        </li>
+
+        <li>
+          <strong>Add this code to <code class="inline">ColorChanger.js</code></strong>
+          <pre class="cmd">
+// src/components/ColorChanger.js
+import React, { useState } from "react";
+import "./ColorChanger.css"; // Optional CSS file
+
+const getRandomColor = () =&gt; {
+  // Generate a random hex color
+  const letters = "0123456789ABCDEF";
+  let color = "#";
+  for (let i = 0; i &lt; 6; i++) {
+    color += letters[Math.floor(Math.random() * 16)];
+  }
+  return color;
+};
+
+const ColorChanger = () =&gt; {
+  const [bgColor, setBgColor] = useState("#ffffff"); // Default background
+
+  const changeColor = () =&gt; {
+    const newColor = getRandomColor();
+    setBgColor(newColor); // Update state, triggers re-render
+  };
+
+  return (
+    &lt;div className="color-container" style={{ backgroundColor: bgColor }}&gt;
+      &lt;h1&gt;Background Color: {bgColor}&lt;/h1&gt;
+      &lt;button onClick={changeColor}&gt;Change Color&lt;/button&gt;
+    &lt;/div&gt;
+  );
+};
+
+export default ColorChanger;
+          </pre>
+        </li>
+
+        <li>
+          <strong>Add this code to <code class="inline">ColorChanger.css</code></strong>
+          <pre class="cmd">
+.color-container {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  transition: background-color 0.5s ease;
+}
+
+button {
+  padding: 10px 20px;
+  font-size: 1.2rem;
+  border: none;
+  background-color: black;
+  color: white;
+  cursor: pointer;
+  margin-top: 20px;
+  border-radius: 8px;
+  transition: transform 0.2s ease;
+}
+
+button:hover {
+  transform: scale(1.05);
+}
+          </pre>
+        </li>
+
+        <li>
+          <strong>Replace <code class="inline">App.js</code> with the following:</strong>
+          <pre class="cmd">
+// src/App.js
+import React from "react";
+import ColorChanger from "./components/ColorChanger";
+
+function App() {
+  return &lt;ColorChanger /&gt;;
+}
+
+export default App;
+          </pre>
+        </li>
+
+        <li>
+          <strong>Run the app</strong>
+          <pre class="cmd">npm start</pre>
+          <div class="note">Your React app should open automatically at <code class="inline">http://localhost:3000</code>.</div>
+        </li>
+
+        <li>
+          <strong>Challenge questions:</strong>
+          <ul>
+            <li>What else can you do to customize your background?</li>
+            <li>If you add text, can you change the text color based on the background?</li>
+          </ul>
+        </li>
+
+        <li>
+          <strong>Close the app</strong>
+          <pre class="cmd">Press Ctrl + C on Mac/Linux/Windows or stop the process in GitHub Codespaces.</pre>
+        </li>
+      </ol>
+    </main>
+  </div>
+</body>
+
+</html>

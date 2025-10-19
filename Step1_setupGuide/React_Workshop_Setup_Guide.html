@@ -1,0 +1,430 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Workshop Installation Guide</title>
+    <style>
+        :root {
+            --bg: #fff7fb;
+            --card: #fff;
+            --muted: #6b6170;
+            --accent-1: #ff7ab6;
+            --accent-2: #ffb3d9;
+            --accent-3: #ffdfee;
+            --glass: rgba(255, 255, 255, 0.6);
+            --radius: 18px;
+            --max: 1100px;
+            font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+            color: #332532;
+        }
+
+        html,
+        body {
+            height: 100%;
+        }
+
+        body {
+            margin: 0;
+            background: linear-gradient(180deg, var(--accent-3) 0%, var(--bg) 40%);
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            padding: 48px 20px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .wrap {
+            width: 100%;
+            max-width: var(--max);
+            display: grid;
+            gap: 28px;
+        }
+
+        header.hero {
+            background: linear-gradient(135deg, rgba(255, 122, 182, 0.12), rgba(255, 179, 217, 0.08));
+            border-radius: var(--radius);
+            padding: 40px 36px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            gap: 16px;
+            box-shadow: 0 8px 30px rgba(109, 70, 94, 0.08);
+            border: 1px solid rgba(255, 122, 182, 0.12);
+        }
+
+        .logo {
+            width: 80px;
+            height: 80px;
+            border-radius: 16px;
+            background: linear-gradient(135deg, var(--accent-1), var(--accent-2));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 700;
+            font-size: 18px;
+            flex: 0 0 80px;
+            box-shadow: 0 6px 18px rgba(255, 122, 182, 0.22), inset 0 -6px 12px rgba(0, 0, 0, 0.06);
+        }
+
+        h1 {
+            margin: 0;
+            font-size: 22px;
+            letter-spacing: -0.2px;
+        }
+
+        p.lead {
+            margin: 6px 0 0;
+            color: var(--muted);
+            font-size: 14px;
+        }
+
+        .grid {
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        @media (max-width:920px) {
+            .grid {
+                flex-direction: column;
+            }
+        }
+
+        .card {
+            background: var(--card);
+            padding: 20px;
+            border-radius: 14px;
+            border: 1px solid rgba(0, 0, 0, 0.04);
+            box-shadow: 0 8px 20px rgba(100, 40, 80, 0.03);
+        }
+
+        .section-title {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 12px;
+        }
+
+        .section-title h2 {
+            text-align: center;
+            font-size: 20px;
+            font-weight: 600;
+            padding: 12px 16px;
+            border-radius: 12px;
+            background: linear-gradient(90deg, var(--accent-3), var(--bg));
+            color: #332532;
+            box-shadow: 0 4px 10px rgba(255, 122, 182, 0.1);
+            border: 1px solid rgba(255, 122, 182, 0.2);
+            margin: 0;
+        }
+
+        .section-title .small {
+            font-size: 13px;
+            color: var(--muted);
+        }
+
+        ol.steps {
+            padding-left: 18px;
+            margin: 0;
+        }
+
+        ol.steps li {
+            margin: 14px 0;
+        }
+
+        pre.cmd {
+            background: linear-gradient(180deg, #fff 0%, #fff7fb 100%);
+            padding: 12px 14px;
+            border-radius: 10px;
+            font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, "Roboto Mono", monospace;
+            font-size: 13px;
+            border: 1px solid rgba(0, 0, 0, 0.04);
+            overflow: auto;
+        }
+
+        .note {
+            font-size: 13px;
+            color: var(--muted);
+            margin-top: 8px;
+        }
+
+        ul.tips {
+            padding-left: 18px;
+            margin: 10px 0;
+        }
+
+        ul.tips li {
+            margin: 8px 0;
+            color: var(--muted);
+            font-size: 14px;
+        }
+
+        hr.divider {
+            margin: 20px 0;
+            border: none;
+            border-top: 1px dashed rgba(0, 0, 0, 0.06);
+        }
+
+        code.inline {
+            background: rgba(0, 0, 0, 0.03);
+            padding: 2px 6px;
+            border-radius: 6px;
+            font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, "Roboto Mono", monospace;
+        }
+
+        h4.platform {
+            display: inline-block;
+            font-size: 16px;
+            font-weight: 600;
+            margin: 20px 0 10px;
+            padding: 4px 10px;
+            border-radius: 8px;
+            box-shadow: inset 0 -1px 0 rgba(0, 0, 0, 0.05);
+        }
+
+        h4.platform.mac {
+            background-color: #e8f5ff;
+            color: #3178c6;
+        }
+
+        h4.platform.windows {
+            background-color: #e9f8ef;
+            color: #2d7a46;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="wrap">
+        <header class="hero">
+            <div class="logo">Frontera Devs</div>
+            <div>
+                <h1>Pre-Workshop Installation Guide</h1>
+                <p class="lead">Steps for macOS, Windows, and GitHub Codespaces</p>
+            </div>
+        </header>
+
+        <div class="grid">
+
+                        <!-- Card 2 -->
+            <main class="card">
+
+                <!-- Setting Up React Using GitHub Codespaces -->
+                <div class="section-title">
+                    <h2>Set Up React Using GitHub Codespaces</h2>
+                </div>
+
+                <!-- GitHub SECTION -->
+                <section aria-labelledby="codespaces">
+                    <h3 id="codespaces">Step 1: Set Up GitHub Codespaces</h3>
+                    <ol class="steps">
+                        <li>
+                            <strong>Open your Codespace</strong>
+                            <pre class="cmd">1. Go to your repository on GitHub
+2. Click the green “Code” button and select “Open with Codespaces”
+3. Wait for the Codespace environment to load</pre>
+                        </li>
+                        <li>
+                            <strong>Install Node.js (if missing)</strong>
+                            <div class="note">Run these commands one at a time in your terminal:</div>                            
+                            <pre class="cmd">sudo apt update
+sudo apt install nodejs npm -y</pre>
+                            <div class="note">This installs Node.js and npm using the Ubuntu package manager.</div>
+                        </li>
+                        <li>
+                            <strong>Verify installation</strong>
+                            <div class="note">Run these commands one at a time in your terminal:</div>
+                            <pre class="cmd">node -v
+npm -v</pre>
+                            <div class="note">Each command should print a version number, confirming installation.</div>
+                        </li>
+                    </ol>
+                </section>
+
+                <hr class="divider" />
+
+                <!-- React2 SECTION -->
+                <section aria-labelledby="react2">
+                    <h3 id="react2">Step 2: Create React App using Node.js and npm</h3>
+                    <ol class="steps">
+                        <li>
+                            <strong>Open Terminal</strong>
+                            <pre class="cmd">1. Press Ctrl+Shift+P (Windows/Linux) or Cmd+Shift+P (macOS) to open the Command Palette
+2. Type "Terminal" and select "Terminal: Create New Terminal" from the suggestions
+3. Press Return or Enter</pre>
+                        </li>
+                        <li>
+                            <strong>Create a new React project</strong>
+                            <pre class="cmd">npx create-react-app my-app</pre>
+                            <div class="note">This uses npm’s <code class="inline">npx</code> tool to set up React with all dependencies.</div>
+                        </li>
+                        <li>
+                            <strong>Navigate to the project directory</strong>
+                            <pre class="cmd">cd my-app</pre>
+                        </li>
+                        <li>
+                            <strong>Start the development server</strong>
+                            <pre class="cmd">npm start</pre>
+                            <div class="note">Your React app should open automatically in the browser at <code class="inline">http://localhost:3000</code>.</div>
+                        </li>
+                    </ol>
+                </section>
+
+                <hr class="divider" />
+
+                <!-- Done -->
+                <section aria-labelledby="Done2">
+                    <h3 id="Done2">You're set! Thank you for following the Pre-Workshop Installation Guide.</h3>
+                </section>
+            </main>
+            
+            <!-- Card 1 -->
+            <main class="card">
+                
+                <!-- Setting Up React Locally on Your Computer -->
+                <div class="section-title">
+                    <h2 id="section2">Set Up React Locally on Your Device</h2>
+                </div>
+                
+                <!-- VS CODE SECTION -->
+                <section aria-labelledby="vscode">
+                    <h3 id="vscode">Step 1: Install Visual Studio Code</h3>
+                    <ol class="steps">
+                        <li>
+                            <strong>Download VS Code</strong>
+                            <pre class="cmd">Go to <a href="https://code.visualstudio.com" target="_blank">https://code.visualstudio.com</a></pre>
+                            <div class="note">Choose the version for your operating system (macOS, Windows, or Linux).</div>
+                        </li>
+                        <li>
+                            <strong>Install and open VS Code</strong>
+                            <pre class="cmd">Follow the setup wizard and open Visual Studio Code once complete.</pre>
+                        </li>
+                        <li>
+                            <strong>Verify installation</strong>
+                            <pre class="cmd">code --version</pre>
+                            <div class="note">If this prints a version number, VS Code is installed correctly.</div>
+                        </li>
+                    </ol>
+                </section>
+
+                <hr class="divider" />
+
+                <!-- Mac SECTION -->
+                <section aria-labelledby="mac">
+                    <h3 id="node.js">Step 2: Install Node.js</h3>
+                    
+                    <!-- <h4 id="mac">macOS</h4> -->
+                    <h4 class="platform mac">macOS</h4>
+                    
+                    <ol class="steps">
+                        <li>
+                            <strong>Open Terminal</strong>
+                            <pre class="cmd">1. Cmd+Space
+2. Type "Terminal"
+3. Press return</pre>
+                        </li>
+                        <li>
+                            <strong>Install Homebrew</strong>
+                            <div class="note">Copy the following command into the terminal and press enter.</div>
+                            <pre class="cmd">/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"</pre>
+                            <div class="note">After installation, run <code class="inline">brew --version</code> to verify.</div>
+                        </li>
+                        <li>
+                            <strong>Install Node.js</strong>
+                            <div class="note">Copy the following command into the terminal and press enter.</div>
+                            <pre class="cmd">brew install node</pre>
+                            <div class="note">This installs Node.js and npm.</div>
+                        </li>
+                        <li>
+                            <strong>Verify installation</strong>
+                            <div class="note">Run these commands one at a time in your terminal:</div>
+                            <pre class="cmd">node -v
+npm -v</pre>
+                            <div class="note">Each command should print the version you have, confirming installation.</div>
+                        </li>
+                    </ol>
+                </section>
+
+                <!-- Windows SECTION -->
+                <section aria-labelledby="windows">
+                    <!-- <h4 id="windows">Windows</h4> -->
+                    <h4 class="platform windows">Windows</h4>
+                    
+                    <ol class="steps">
+                        <li>
+                            <strong>Official installer</strong>
+                            <div class="note">
+                                Watch the walkthrough video: 
+                                <a href="https://www.youtube.com/watch?v=lt5D2EWZMN0&t=32s" target="_blank">View on YouTube</a>
+                            </div>
+                            <pre class="cmd">1. Visit <a href="https://nodejs.org" target="_blank">https://nodejs.org</a>
+2. Download the LTS Windows Installer (.msi)
+3. Run the installer and follow the prompts</pre>
+                            <div class="note">This installs Node.js and npm system-wide.</div>
+                        </li>
+                        <li>
+                            <strong>Open Command Prompt</strong>
+                            <pre class="cmd">1. Click on the Windows Start menu (Windows Logo)
+2. Type "Command Prompt" in the search bar and select Command Prompt</pre>
+                        </li>
+                        <li>
+                            <strong>Verify installation</strong>
+                            <div class="note">Run these commands one at a time in your terminal:</div>
+                            <pre class="cmd">node -v
+npm -v</pre>
+                            <div class="note">Each command should print the version you have, confirming installation.</div>
+                        </li>
+                </section>
+
+                <hr class="divider" />
+
+                <!-- React1 SECTION -->
+                <section aria-labelledby="react1">
+                    <h3 id="react1">Step 3: Install React using Node.js and npm</h3>
+                    <ol class="steps">
+                        <li>
+                            <strong>Make project folder</strong>
+                            <pre class="cmd">1. Create a project folder somewhere in your file management app
+2. Go to VS Code
+3. Navigate to File > Open Folder... and open your project folder
+4. Navigate to Terminal > New Terminal </pre>
+                        <div class="note">Tip: You can use the <code class="inline">pwd</code> command in your terminal to verify your path.</div>
+                        </li>
+                        <li>
+                            <strong>Create a new React project </strong>
+                            <div class="note">Copy the following command into the terminal and press enter</div>
+                            <pre class="cmd">npx create-react-app my-app</pre>
+                            <div class="note">This uses npm’s <code class="inline">npx</code> tool to set up React with all dependencies.</div>
+                        </li>
+                        <li>
+                            <strong>Navigate into the my-app folder</strong>
+                            <div class="note">Copy the following command into the terminal and press enter</div>
+                            <pre class="cmd">cd my-app</pre>
+                        </li>
+                        <li>
+                            <strong>Launch your app! Start the development server</strong>
+                            <div class="note">Copy the following command into the terminal and press enter</div>
+                            <pre class="cmd">npm start</pre>
+                            <div class="note">Your React app should open automatically in the browser at <code class="inline">http://localhost:3000</code>.</div>
+                        </li>
+                    </ol>
+                </section>
+
+                <hr class="divider" />
+
+                <!-- Done -->
+                <section aria-labelledby="Done1">
+                    <h3 id="Done1">You're set! Thank you for following the Pre-Workshop Installation Guide.</h3>
+                </section>
+            </main>
+
+        </div>
+    </div>
+</body>
+
+</html>

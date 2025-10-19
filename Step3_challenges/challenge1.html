@@ -1,0 +1,268 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Challenge 1: Embed a Video</title>
+  <style>
+    :root {
+      --bg: #fff7fb;
+      --card: #fff;
+      --muted: #6b6170;
+      --accent-1: #ff7ab6;
+      --accent-2: #ffb3d9;
+      --accent-3: #ffdfee;
+      --glass: rgba(255, 255, 255, 0.6);
+      --radius: 18px;
+      --max: 1100px;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      color: #332532;
+    }
+
+    html,
+    body {
+      min-height: 100%;
+    }
+
+    body {
+      margin: 0;
+      background: linear-gradient(180deg, var(--accent-3) 0%, var(--bg) 40%);
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      padding: 48px 20px;
+      display: flex;
+      justify-content: center;
+    }
+
+    .wrap {
+      width: 100%;
+      max-width: var(--max);
+      display: grid;
+      gap: 28px;
+    }
+
+    header.hero {
+      background: linear-gradient(135deg, rgba(255, 122, 182, 0.12), rgba(255, 179, 217, 0.08));
+      border-radius: var(--radius);
+      padding: 40px 36px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      gap: 16px;
+      box-shadow: 0 8px 30px rgba(109, 70, 94, 0.08);
+      border: 1px solid rgba(255, 122, 182, 0.12);
+    }
+
+    .logo {
+      width: 80px;
+      height: 80px;
+      border-radius: 16px;
+      background: linear-gradient(135deg, var(--accent-1), var(--accent-2));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-weight: 700;
+      font-size: 18px;
+      flex: 0 0 80px;
+      box-shadow: 0 6px 18px rgba(255, 122, 182, 0.22), inset 0 -6px 12px rgba(0, 0, 0, 0.06);
+    }
+
+    h1 {
+      margin: 0;
+      font-size: 22px;
+      letter-spacing: -0.2px;
+    }
+
+    p.lead {
+      margin: 6px 0 0;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .grid {
+      display: flex;
+      justify-content: center;
+    }
+
+    @media (max-width:920px) {
+      .grid {
+        flex-direction: column;
+      }
+    }
+
+    .card {
+      background: var(--card);
+      padding: 20px;
+      border-radius: 14px;
+      border: 1px solid rgba(0, 0, 0, 0.04);
+      box-shadow: 0 8px 20px rgba(100, 40, 80, 0.03);
+    }
+
+    .section-title {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 12px;
+    }
+
+    .section-title h2 {
+      margin: 0;
+      font-size: 16px;
+    }
+
+    ol.steps {
+      padding-left: 18px;
+      margin: 0;
+    }
+
+    ol.steps li {
+      margin: 14px 0;
+    }
+
+    pre.cmd {
+      background: linear-gradient(180deg, #fff 0%, #fff7fb 100%);
+      padding: 12px 14px;
+      border-radius: 10px;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, "Roboto Mono", monospace;
+      font-size: 13px;
+      border: 1px solid rgba(0, 0, 0, 0.04);
+      overflow: auto;
+    }
+
+    .note {
+      font-size: 13px;
+      color: var(--muted);
+      margin-top: 8px;
+    }
+
+    code.inline {
+      background: rgba(0, 0, 0, 0.03);
+      padding: 2px 6px;
+      border-radius: 6px;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, "Roboto Mono", monospace;
+    }
+
+    hr.divider {
+      margin: 20px 0;
+      border: none;
+      border-top: 1px dashed rgba(0, 0, 0, 0.06);
+    }
+  </style>
+</head>
+
+<body>
+  <div class="wrap">
+    <div class="grid">
+      <main class="card">
+        <div class="section-title">
+          <h2>Challenge 1: Embed a Video</h2>
+        </div>
+
+        <section aria-labelledby="embed-video">
+          <ol class="steps">
+            <li>
+              <strong>Goal:</strong> Play an external video (URL) inside your React App.
+            </li>
+
+            <li>
+              <strong>Navigate to your React project</strong>
+              <pre class="cmd">cd my-app</pre>
+            </li>
+
+            <li>
+              <strong>Create a components folder</strong>
+              <pre class="cmd">Inside the <code class="inline">src</code> folder, create a folder called <code class="inline">components</code></pre>
+            </li>
+
+            <li>
+              <strong>Create two files inside components:</strong>
+              <pre class="cmd">VideoPlayer.js
+VideoPlayer.css</pre>
+            </li>
+
+            <li>
+              <strong>Add this code to <code class="inline">VideoPlayer.js</code></strong>
+              <pre class="cmd">
+// src/components/VideoPlayer.js
+const VideoPlayer = () =&gt; {
+  return (
+    &lt;div className="video-container"&gt;
+      &lt;iframe
+        width="720"
+        height="405"
+        src="video link"
+        title="YouTube video player"
+        frameBorder="0"
+        allow="autoplay; encrypted-media"
+        allowFullScreen
+      &gt;&lt;/iframe&gt;
+    &lt;/div&gt;
+  );
+};
+
+export default VideoPlayer;
+              </pre>
+              <div class="note">Replace <code class="inline">"video link"</code> with the URL of the YouTube or external video you want to use.</div>
+            </li>
+
+            <li>
+              <strong>Add styling in <code class="inline">VideoPlayer.css</code></strong>
+              <pre class="cmd">
+.video-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #111;
+}
+
+video {
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+}
+              </pre>
+            </li>
+
+            <li>
+              <strong>Include your VideoPlayer into App.js</strong>
+              <pre class="cmd">
+// src/App.js
+import React from "react";
+import VideoPlayer from "./components/VideoPlayer";
+
+function App() {
+  return &lt;VideoPlayer /&gt;;
+}
+
+export default App;
+              </pre>
+              <div class="note">Comment out or delete your previous App.js before adding this code.</div>
+            </li>
+
+            <li>
+              <strong>Run your app</strong>
+              <pre class="cmd">npm start</pre>
+              <div class="note">If it’s not running already, this command will start the development server and open your app in the browser.</div>
+            </li>
+
+            <li>
+              <strong>Customize your background</strong>
+              <div class="note">Try modifying the <code class="inline">background-color</code> in <code class="inline">VideoPlayer.css</code> or experiment with gradients for a unique style!</div>
+            </li>
+
+            <li>
+              <strong>Stop your app</strong>
+              <pre class="cmd">Ctrl + C</pre>
+              <div class="note">Works on Mac, Linux, Windows, or GitHub Codespaces.</div>
+            </li>
+          </ol>
+        </section>
+      </main>
+    </div>
+  </div>
+</body>
+
+</html>
