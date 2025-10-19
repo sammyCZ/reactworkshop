@@ -21,7 +21,8 @@ This session is **beginner-friendly**, but also packed with opportunities for ex
 
 ```bash
 .
-├── step1/       # 🧰 Pre-Workshop Installation Guide
-├── step2/       # 🚀 React App Instantiation & Root Rendering
-├── step3/       # 🧠 Post-Workshop Challenges
-└── arduino/     # 🔌 React + Arduino Integration (Coming Soon)
+├── Step1_setupGuide/       # 🧰 Pre-Workshop Installation Guide
+├── Step2_reactIntro/       # 🚀 React App Instantiation & Root Rendering
+├── Step3_challenges/       # 🧠 Post-Workshop Challenges
+└── arduino/                # 🔌 React + Arduino Integration 
+
