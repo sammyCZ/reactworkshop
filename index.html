@@ -1,0 +1,149 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Workshop Navigation Hub</title>
+  <style>
+    /* === Your Original Styling === */
+    :root {
+      --bg: #fff7fb;
+      --card: #fff;
+      --muted: #6b6170;
+      --accent-1: #ff7ab6;
+      --accent-2: #ffb3d9;
+      --accent-3: #ffdfee;
+      --glass: rgba(255, 255, 255, 0.6);
+      --radius: 18px;
+      --max: 1100px;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      color: #332532;
+    }
+
+    html,
+    body {
+      min-height: 100%;
+    }
+
+    body {
+      margin: 0;
+      background: linear-gradient(180deg, var(--accent-3) 0%, var(--bg) 40%);
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      padding: 48px 20px;
+      display: flex;
+      justify-content: center;
+    }
+
+    .wrap {
+      width: 100%;
+      max-width: var(--max);
+      display: grid;
+      gap: 28px;
+    }
+
+    header.hero {
+      background: linear-gradient(135deg, rgba(255, 122, 182, 0.12), rgba(255, 179, 217, 0.08));
+      border-radius: var(--radius);
+      padding: 40px 36px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      gap: 16px;
+      box-shadow: 0 8px 30px rgba(109, 70, 94, 0.08);
+      border: 1px solid rgba(255, 122, 182, 0.12);
+    }
+
+    .logo {
+      width: 80px;
+      height: 80px;
+      border-radius: 16px;
+      background: linear-gradient(135deg, var(--accent-1), var(--accent-2));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-weight: 700;
+      font-size: 18px;
+      box-shadow: 0 6px 18px rgba(255, 122, 182, 0.22), inset 0 -6px 12px rgba(0, 0, 0, 0.06);
+    }
+
+    h1 {
+      margin: 0;
+      font-size: 22px;
+      letter-spacing: -0.2px;
+    }
+
+    p.lead {
+      margin: 6px 0 0;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .grid {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .card {
+      background: var(--card);
+      padding: 20px;
+      border-radius: 14px;
+      border: 1px solid rgba(0, 0, 0, 0.04);
+      box-shadow: 0 8px 20px rgba(100, 40, 80, 0.03);
+      cursor: pointer;
+      transition: transform 0.15s ease, box-shadow 0.15s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 12px 24px rgba(255, 122, 182, 0.12);
+    }
+
+    .card h3 {
+      margin: 0;
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--accent-1);
+    }
+
+    .card p {
+      margin: 6px 0 0;
+      font-size: 14px;
+      color: var(--muted);
+    }
+
+    .card div {
+      justify-content: center;
+    }
+
+
+    footer {
+      text-align: center;
+      color: var(--muted);
+      font-size: 12px;
+      margin-top: 20px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="wrap">
+    <header class="hero">
+      <div class="logo">💡</div>
+      <h1>React Workshop Portal</h1>
+      <p class="lead">Navigate through setup, introduction, and coding challenges.</p>
+    </header>
+
+    <section class="grid" id="linksContainer">
+
+    </section>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+
+</html>

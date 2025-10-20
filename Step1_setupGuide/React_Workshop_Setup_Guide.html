@@ -22,7 +22,7 @@
 
         html,
         body {
-            height: 100%;
+            min-height: 100%;
         }
 
         body {
@@ -40,6 +40,7 @@
             max-width: var(--max);
             display: grid;
             gap: 28px;
+            margin: 0 auto;
         }
 
         header.hero {
@@ -196,10 +197,37 @@
             background-color: #e9f8ef;
             color: #2d7a46;
         }
+
+        .back-button {
+            display: inline-block;
+            align-self: flex-start;
+            margin-bottom: 24px;
+            padding: 10px 18px;
+            background: linear-gradient(135deg, var(--accent-1), var(--accent-2));
+            color: white;
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 14px;
+            box-shadow: 0 6px 16px rgba(255, 122, 182, 0.25);
+            transition: all 0.2s ease;
+        }
+
+        /* Subtle hover effect */
+        .back-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(255, 122, 182, 0.35);
+        }
+
+        .back-button:active {
+            transform: translateY(0);
+            box-shadow: 0 4px 12px rgba(255, 122, 182, 0.25);
+        }
     </style>
 </head>
 
 <body>
+    <a href="../index.html" class="back-button">← Back to Home</a>
     <div class="wrap">
         <header class="hero">
             <div class="logo">Frontera Devs</div>
@@ -211,7 +239,7 @@
 
         <div class="grid">
 
-                        <!-- Card 2 -->
+            <!-- Card 2 -->
             <main class="card">
 
                 <!-- Setting Up React Using GitHub Codespaces -->
@@ -231,7 +259,7 @@
                         </li>
                         <li>
                             <strong>Install Node.js (if missing)</strong>
-                            <div class="note">Run these commands one at a time in your terminal:</div>                            
+                            <div class="note">Run these commands one at a time in your terminal:</div>
                             <pre class="cmd">sudo apt update
 sudo apt install nodejs npm -y</pre>
                             <div class="note">This installs Node.js and npm using the Ubuntu package manager.</div>
@@ -261,7 +289,8 @@ npm -v</pre>
                         <li>
                             <strong>Create a new React project</strong>
                             <pre class="cmd">npx create-react-app my-app</pre>
-                            <div class="note">This uses npm’s <code class="inline">npx</code> tool to set up React with all dependencies.</div>
+                            <div class="note">This uses npm’s <code class="inline">npx</code> tool to set up React with
+                                all dependencies.</div>
                         </li>
                         <li>
                             <strong>Navigate to the project directory</strong>
@@ -270,7 +299,8 @@ npm -v</pre>
                         <li>
                             <strong>Start the development server</strong>
                             <pre class="cmd">npm start</pre>
-                            <div class="note">Your React app should open automatically in the browser at <code class="inline">http://localhost:3000</code>.</div>
+                            <div class="note">Your React app should open automatically in the browser at <code
+                                    class="inline">http://localhost:3000</code>.</div>
                         </li>
                     </ol>
                 </section>
@@ -282,23 +312,25 @@ npm -v</pre>
                     <h3 id="Done2">You're set! Thank you for following the Pre-Workshop Installation Guide.</h3>
                 </section>
             </main>
-            
+
             <!-- Card 1 -->
             <main class="card">
-                
+
                 <!-- Setting Up React Locally on Your Computer -->
                 <div class="section-title">
                     <h2 id="section2">Set Up React Locally on Your Device</h2>
                 </div>
-                
+
                 <!-- VS CODE SECTION -->
                 <section aria-labelledby="vscode">
                     <h3 id="vscode">Step 1: Install Visual Studio Code</h3>
                     <ol class="steps">
                         <li>
                             <strong>Download VS Code</strong>
-                            <pre class="cmd">Go to <a href="https://code.visualstudio.com" target="_blank">https://code.visualstudio.com</a></pre>
-                            <div class="note">Choose the version for your operating system (macOS, Windows, or Linux).</div>
+                            <pre
+                                class="cmd">Go to <a href="https://code.visualstudio.com" target="_blank">https://code.visualstudio.com</a></pre>
+                            <div class="note">Choose the version for your operating system (macOS, Windows, or Linux).
+                            </div>
                         </li>
                         <li>
                             <strong>Install and open VS Code</strong>
@@ -317,10 +349,10 @@ npm -v</pre>
                 <!-- Mac SECTION -->
                 <section aria-labelledby="mac">
                     <h3 id="node.js">Step 2: Install Node.js</h3>
-                    
+
                     <!-- <h4 id="mac">macOS</h4> -->
                     <h4 class="platform mac">macOS</h4>
-                    
+
                     <ol class="steps">
                         <li>
                             <strong>Open Terminal</strong>
@@ -331,8 +363,10 @@ npm -v</pre>
                         <li>
                             <strong>Install Homebrew</strong>
                             <div class="note">Copy the following command into the terminal and press enter.</div>
-                            <pre class="cmd">/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"</pre>
-                            <div class="note">After installation, run <code class="inline">brew --version</code> to verify.</div>
+                            <pre
+                                class="cmd">/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"</pre>
+                            <div class="note">After installation, run <code class="inline">brew --version</code> to
+                                verify.</div>
                         </li>
                         <li>
                             <strong>Install Node.js</strong>
@@ -345,7 +379,8 @@ npm -v</pre>
                             <div class="note">Run these commands one at a time in your terminal:</div>
                             <pre class="cmd">node -v
 npm -v</pre>
-                            <div class="note">Each command should print the version you have, confirming installation.</div>
+                            <div class="note">Each command should print the version you have, confirming installation.
+                            </div>
                         </li>
                     </ol>
                 </section>
@@ -354,13 +389,14 @@ npm -v</pre>
                 <section aria-labelledby="windows">
                     <!-- <h4 id="windows">Windows</h4> -->
                     <h4 class="platform windows">Windows</h4>
-                    
+
                     <ol class="steps">
                         <li>
                             <strong>Official installer</strong>
                             <div class="note">
-                                Watch the walkthrough video: 
-                                <a href="https://www.youtube.com/watch?v=lt5D2EWZMN0&t=32s" target="_blank">View on YouTube</a>
+                                Watch the walkthrough video:
+                                <a href="https://www.youtube.com/watch?v=lt5D2EWZMN0&t=32s" target="_blank">View on
+                                    YouTube</a>
                             </div>
                             <pre class="cmd">1. Visit <a href="https://nodejs.org" target="_blank">https://nodejs.org</a>
 2. Download the LTS Windows Installer (.msi)
@@ -377,7 +413,8 @@ npm -v</pre>
                             <div class="note">Run these commands one at a time in your terminal:</div>
                             <pre class="cmd">node -v
 npm -v</pre>
-                            <div class="note">Each command should print the version you have, confirming installation.</div>
+                            <div class="note">Each command should print the version you have, confirming installation.
+                            </div>
                         </li>
                 </section>
 
@@ -393,13 +430,15 @@ npm -v</pre>
 2. Go to VS Code
 3. Navigate to File > Open Folder... and open your project folder
 4. Navigate to Terminal > New Terminal </pre>
-                        <div class="note">Tip: You can use the <code class="inline">pwd</code> command in your terminal to verify your path.</div>
+                            <div class="note">Tip: You can use the <code class="inline">pwd</code> command in your
+                                terminal to verify your path.</div>
                         </li>
                         <li>
                             <strong>Create a new React project </strong>
                             <div class="note">Copy the following command into the terminal and press enter</div>
                             <pre class="cmd">npx create-react-app my-app</pre>
-                            <div class="note">This uses npm’s <code class="inline">npx</code> tool to set up React with all dependencies.</div>
+                            <div class="note">This uses npm’s <code class="inline">npx</code> tool to set up React with
+                                all dependencies.</div>
                         </li>
                         <li>
                             <strong>Navigate into the my-app folder</strong>
@@ -410,7 +449,8 @@ npm -v</pre>
                             <strong>Launch your app! Start the development server</strong>
                             <div class="note">Copy the following command into the terminal and press enter</div>
                             <pre class="cmd">npm start</pre>
-                            <div class="note">Your React app should open automatically in the browser at <code class="inline">http://localhost:3000</code>.</div>
+                            <div class="note">Your React app should open automatically in the browser at <code
+                                    class="inline">http://localhost:3000</code>.</div>
                         </li>
                     </ol>
                 </section>

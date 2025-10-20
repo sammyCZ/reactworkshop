@@ -99,10 +99,37 @@
       border-radius: 6px;
       font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, "Roboto Mono", monospace;
     }
+
+    .back-button {
+      display: inline-block;
+      align-self: flex-start;
+      margin-bottom: 24px;
+      padding: 10px 18px;
+      background: linear-gradient(135deg, var(--accent-1), var(--accent-2));
+      color: white;
+      border-radius: 12px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 14px;
+      box-shadow: 0 6px 16px rgba(255, 122, 182, 0.25);
+      transition: all 0.2s ease;
+    }
+
+    /* Subtle hover effect */
+    .back-button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(255, 122, 182, 0.35);
+    }
+
+    .back-button:active {
+      transform: translateY(0);
+      box-shadow: 0 4px 12px rgba(255, 122, 182, 0.25);
+    }
   </style>
 </head>
 
 <body>
+  <a href="../index.html" class="back-button">← Back to Home</a>
   <div class="wrap">
     <main class="card">
       <div class="section-title">
@@ -111,7 +138,8 @@
 
       <ol class="steps">
         <li>
-          <strong>Goal:</strong> Create a React frontend and a Node.js/Express backend with persistent storage using a JSON file.
+          <strong>Goal:</strong> Create a React frontend and a Node.js/Express backend with persistent storage using a
+          JSON file.
         </li>
 
         <li>
@@ -135,7 +163,9 @@
 npm init -y
 npm install express cors body-parser
           </pre>
-          <div class="note">This installs <code class="inline">node_modules</code>, <code class="inline">package.json</code>, and <code class="inline">package-lock.json</code> inside the <code class="inline">server</code> folder.</div>
+          <div class="note">This installs <code class="inline">node_modules</code>, <code
+              class="inline">package.json</code>, and <code class="inline">package-lock.json</code> inside the <code
+              class="inline">server</code> folder.</div>
         </li>
 
         <li>
@@ -220,8 +250,10 @@ cd my-app
         <li>
           <strong>Update backend and frontend ports:</strong>
           <ul>
-            <li>In <code class="inline">server/index.js</code>, change <code class="inline">const PORT = 5000</code> to <code class="inline">5001</code>.</li>
-            <li>In <code class="inline">src/App.js</code>, change the API URL port to <code class="inline">5001</code>.</li>
+            <li>In <code class="inline">server/index.js</code>, change <code class="inline">const PORT = 5000</code> to
+              <code class="inline">5001</code>.</li>
+            <li>In <code class="inline">src/App.js</code>, change the API URL port to <code class="inline">5001</code>.
+            </li>
           </ul>
         </li>
 
@@ -310,13 +342,14 @@ button {
         </li>
 
         <li>
-          <strong>Stop any running app</strong>  
+          <strong>Stop any running app</strong>
           <pre class="cmd">Ctrl + C</pre>
         </li>
 
         <li>
-          <strong>Open a split terminal</strong>  
-          <div class="note">Use <code class="inline">Ctrl+\</code> on Windows/Linux or <code class="inline">Cmd+\</code> on macOS.</div>
+          <strong>Open a split terminal</strong>
+          <div class="note">Use <code class="inline">Ctrl+\</code> on Windows/Linux or <code class="inline">Cmd+\</code>
+            on macOS.</div>
         </li>
 
         <li>

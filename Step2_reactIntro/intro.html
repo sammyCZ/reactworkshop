@@ -204,10 +204,37 @@
             background-color: #e9f8ef;
             color: #2d7a46;
         }
+
+        .back-button {
+            display: inline-block;
+            align-self: flex-start;
+            margin-bottom: 24px;
+            padding: 10px 18px;
+            background: linear-gradient(135deg, var(--accent-1), var(--accent-2));
+            color: white;
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 14px;
+            box-shadow: 0 6px 16px rgba(255, 122, 182, 0.25);
+            transition: all 0.2s ease;
+        }
+
+        /* Subtle hover effect */
+        .back-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(255, 122, 182, 0.35);
+        }
+
+        .back-button:active {
+            transform: translateY(0);
+            box-shadow: 0 4px 12px rgba(255, 122, 182, 0.25);
+        }
     </style>
 </head>
 
 <body>
+    <a href="../index.html" class="back-button">← Back to Home</a>
     <div class="wrap">
         <header class="hero">
             <div class="logo">Frontera Devs</div>
@@ -240,12 +267,13 @@
                     <ol class="steps">
                         <!-- 1 -->
                         <li>
-                        <strong>Open the index.html file</strong>
+                            <strong>Open the index.html file</strong>
                             <pre class="cmd">Inside the public folder, open the index.html file.</pre>
                             <pre class="note">React is called a single-page application.
 In other words, React is loading the entire app on this index.html page.</pre>
                             <img src="img/2.png" style="display:block; margin:12px auto; width:80%; height:auto;" />
-                            <pre class="cmd">Look for the line <code class="inline">&ltdiv id="root&gt&lt/div&gt</code>.</pre>
+                            <pre
+                                class="cmd">Look for the line <code class="inline">&ltdiv id="root&gt&lt/div&gt</code>.</pre>
                             <pre class="note">This is line is where all the feature code is put together and replaces this <code class="inline">&ltdiv id="root&gt&lt/div&gt</code>
 line with your whole app.</pre>
                             <img src="img/3.png" style="display:block; margin:12px auto; width:80%; height:auto;" />
@@ -253,23 +281,26 @@ line with your whole app.</pre>
                         <!-- 2 -->
                         <li>
                             <strong>Understand Root Rendering</strong>
-                                <pre class="cmd">Inside the src folder, open the index.js file.
+                            <pre class="cmd">Inside the src folder, open the index.js file.
 Look for the line: <code class="inline">const root = ReactDom.createRoot(document.getElementbyId(‘root’));</code>
 (Line 7 on VS Code.)</pre>
-                                <pre class="note">This line tells the computer to look for the documents element called "root"</pre>
-                                <img src="img/4.png" style="display:block; margin:12px auto; width:80%; height:auto;" />
-                                
-                                <pre class="cmd">Look at the next 4 lines: <code class="inline">root.render&#123;...</code></pre>
-                                <pre class="note">Here, we are declaring the root, which will be rendering the app.</pre>
-                                <img src="img/5.png" style="display:block; margin:12px auto; width:80%; height:auto;" />
-                                
-                                <pre class="cmd">Inside the src folder, open the <code class="inline">App.js</code>.
+                            <pre
+                                class="note">This line tells the computer to look for the documents element called "root"</pre>
+                            <img src="img/4.png" style="display:block; margin:12px auto; width:80%; height:auto;" />
+
+                            <pre
+                                class="cmd">Look at the next 4 lines: <code class="inline">root.render&#123;...</code></pre>
+                            <pre class="note">Here, we are declaring the root, which will be rendering the app.</pre>
+                            <img src="img/5.png" style="display:block; margin:12px auto; width:80%; height:auto;" />
+
+                            <pre
+                                class="cmd">Inside the src folder, open the <code class="inline">App.js</code>.
 Look at the return function. We can see that <code class="inline">App.js</code> is returning html code to ‘index.html’.</pre>
-                                <pre class="note">What does this mean? In essence, React is really a fancy way to return html code! This means that you can add 
+                            <pre class="note">What does this mean? In essence, React is really a fancy way to return html code! This means that you can add 
 different components and styling pages i.e. css files to your project and they should all be 
 rendered together thanks to your ‘index.html’ file. </pre>
-                                <img src="img/6.png" style="display:block; margin:12px auto; width:80%; height:auto;" />
-                            </li>
+                            <img src="img/6.png" style="display:block; margin:12px auto; width:80%; height:auto;" />
+                        </li>
                     </ol>
                 </section>
                 <hr class="divider" />
@@ -280,7 +311,7 @@ rendered together thanks to your ‘index.html’ file. </pre>
                     <ol class="steps">
                         <!-- 1 -->
                         <li>
-                        <strong>Open a New Terminal</strong>
+                            <strong>Open a New Terminal</strong>
                             <pre class="cmd">On VS Code: Terminal -> New Terminal.
 On GitHub: Ctrl+Shift+`</pre>
                             <img src="img/7.png" style="display:block; margin:12px auto; width:80%; height:auto;" />
@@ -303,7 +334,8 @@ On GitHub: Ctrl+Shift+`</pre>
                         <!-- 1 -->
                         <li>
                             <strong>Make a New Header</strong>
-                            <pre class="cmd">Inside the App.js file, look at the return function. 
+                            <pre
+                                class="cmd">Inside the App.js file, look at the return function. 
 In the return function, create a header tag anywhere in the page using the following JavaScript code: &lt;h1&gt;Your text here&lt;/h1&gt;</pre>
                             <img src="img/10.png" style="display:block; margin:12px auto; width:80%; height:auto;" />
                             <img src="img/11.png" style="display:block; margin:12px auto; width:80%; height:auto;" />
@@ -314,7 +346,7 @@ In the return function, create a header tag anywhere in the page using the follo
                             <strong>Add a Picture</strong>
                             <pre class="cmd">Look up a picture you want to add to your App. 
 Copy the image address. We’re going to add this underneath the header we just made.</pre>
-                        <pre class="cmd">Under the header, add the Javascript code:
+                            <pre class="cmd">Under the header, add the Javascript code:
 
 &lt;img
 src=&quot;link of image address here&quot;
@@ -324,8 +356,8 @@ style=&#123;&#123;
 	maxWidth: &quot;600px&quot;,
 	height: &quot;auto&quot;
 &#125;&#125; /&gt;</pre>
-                        <img src="img/12.png" style="display:block; margin:12px auto; width:80%; height:auto;" />
-                        <img src="img/13.png" style="display:block; margin:12px auto; width:80%; height:auto;" />
+                            <img src="img/12.png" style="display:block; margin:12px auto; width:80%; height:auto;" />
+                            <img src="img/13.png" style="display:block; margin:12px auto; width:80%; height:auto;" />
                         </li>
 
                         <!-- 3 -->
@@ -350,7 +382,7 @@ Tip: You can type the color or look for the hex value on Google. </pre>
                     </ol>
                 </section>
                 <hr class="divider" />
-                
+
                 <!-- Your Turn -->
                 <section aria-labelledby="step5">
                     <h3 id="step5">Step 5: Choose a Challenge</h3>

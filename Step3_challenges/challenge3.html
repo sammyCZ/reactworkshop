@@ -122,10 +122,37 @@
       color: var(--muted);
       margin-top: 8px;
     }
+
+    .back-button {
+      display: inline-block;
+      align-self: flex-start;
+      margin-bottom: 24px;
+      padding: 10px 18px;
+      background: linear-gradient(135deg, var(--accent-1), var(--accent-2));
+      color: white;
+      border-radius: 12px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 14px;
+      box-shadow: 0 6px 16px rgba(255, 122, 182, 0.25);
+      transition: all 0.2s ease;
+    }
+
+    /* Subtle hover effect */
+    .back-button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(255, 122, 182, 0.35);
+    }
+
+    .back-button:active {
+      transform: translateY(0);
+      box-shadow: 0 4px 12px rgba(255, 122, 182, 0.25);
+    }
   </style>
 </head>
 
 <body>
+  <a href="../index.html" class="back-button">← Back to Home</a>
   <div class="wrap">
     <div class="grid">
       <main class="card">
@@ -134,19 +161,22 @@
         </div>
 
         <p class="lead">
-          Make your React app more interactive by building a custom cursor that changes style when hovering over specific areas.
+          Make your React app more interactive by building a custom cursor that changes style when hovering over
+          specific areas.
         </p>
 
         <hr class="divider" />
 
         <ol class="steps">
-          <li><strong>Goal:</strong> Customize the cursor so it changes style (e.g. color, shape, size) when hovering over certain elements.</li>
+          <li><strong>Goal:</strong> Customize the cursor so it changes style (e.g. color, shape, size) when hovering
+            over certain elements.</li>
 
           <li><strong>Navigate to your React project</strong></li>
           <pre class="cmd">cd my-app</pre>
 
           <li><strong>Create a components folder</strong><br>
-            Inside the <code class="inline">src</code> folder, create a folder called <code class="inline">components</code>.
+            Inside the <code class="inline">src</code> folder, create a folder called <code
+              class="inline">components</code>.
           </li>
 
           <li><strong>Create two files inside components:</strong><br>
