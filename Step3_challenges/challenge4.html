@@ -179,15 +179,15 @@
           <li><strong>Navigate to your React project</strong></li>
           <pre class="cmd">cd my-app</pre>
 
-          <li><strong>Install dependencies</strong></li>
+          <li><strong>Install dependencies</strong>
           <pre class="cmd">npm i react-router-dom react-icons styled-components@latest</pre>
 
-          <li><strong>Why each one?</strong>
-            <ul>
-              <li><code class="inline">react-router-dom</code>: For routing between pages/components.</li>
-              <li><code class="inline">react-icons</code>: Provides ready-to-use icons like the hamburger menu.</li>
-              <li><code class="inline">styled-components</code>: CSS-in-JS library to style components.</li>
-            </ul>
+          <pre class="note"><strong>Why each one?</strong>
+
+<code class="inline">react-router-dom</code>: For routing between pages/components.
+<code class="inline">react-icons</code>: Provides ready-to-use icons like the hamburger menu.
+<code class="inline">styled-components</code>: CSS-in-JS library to style components.
+          </pre>
           </li>
 
           <li><strong>Create folders & files</strong>
@@ -488,19 +488,26 @@ function App() {
 
 export default App;
           </pre>
+          
+          <pre class="note"><strong>Tip:</strong> element={<Component />} in &lt;Route&gt; tells React Router which component to render.
+          </pre>
 
-          <li><strong>Run your app</strong></li>
-          <pre class="cmd">npm start</pre>
-
-          <li><strong>Tip:</strong> element={
-            <Component />} in &lt;Route&gt; tells React Router which component to render.
+          <li><strong>Run your app</strong>
+            <pre class="cmd">npm start</pre>
           </li>
-          <li><strong>Experiment:</strong> Try adding a dropdown menu or customizing styling!</li>
-        </ol>
+          
+          <li>
+            <strong>Experiement</strong>
+            <ul>
+              <li>Try adding a dropdown menu or customizing styling!</li>
+            </ul>
+          </li>           
 
-        <p class="note">
-          Close the app by pressing Ctrl+C on Mac/Linux/Windows devices or GitHub Codespaces.
-        </p>
+          <li>
+            <strong>Close the app</strong>
+            <pre class="cmd">Press Ctrl + C on Mac/Linux/Windows or stop the process in GitHub Codespaces.</pre>
+         </li>
+        </ol>
       </main>
     </div>
   </div>
