@@ -124,6 +124,17 @@
       transform: translateY(0);
       box-shadow: 0 4px 12px rgba(255, 122, 182, 0.25);
     }
+
+    .goal {
+      font-size: 13px;
+      color: #4b3f4a;
+      background: #fff0fa;
+      border-left: 4px solid var(--accent-1);
+      padding: 12px 16px;
+      border-radius: 10px;
+      margin-top: 12px;
+      position: relative;
+    }
   </style>
 </head>
 
@@ -135,11 +146,11 @@
         <h2>Challenge 6: Connect to an Arduino</h2>
       </div>
 
-      <ol class="steps">
-        <li>
+      <div class="goal">
           <strong>Goal:</strong> Connect React to an Arduino using the Web Serial API to display a message on a 7-segment display.
-        </li>
+      </div>
 
+      <ol class="steps">
         <li>
           <strong>Make sure you’re inside your React project:</strong>
           <pre class="cmd">cd my-app</pre>
