@@ -1,0 +1,343 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Challenge 6: Connect to an Arduino</title>
+  <style>
+    :root {
+      --bg: #fff7fb;
+      --card: #fff;
+      --muted: #6b6170;
+      --accent-1: #ff7ab6;
+      --accent-2: #ffb3d9;
+      --accent-3: #ffdfee;
+      --glass: rgba(255, 255, 255, 0.6);
+      --radius: 18px;
+      --max: 1100px;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      color: #332532;
+    }
+
+    html,
+    body {
+      min-height: 100%;
+    }
+
+    body {
+      margin: 0;
+      background: linear-gradient(180deg, var(--accent-3) 0%, var(--bg) 40%);
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      padding: 48px 20px;
+      display: flex;
+      justify-content: center;
+    }
+
+    .wrap {
+      width: 100%;
+      max-width: var(--max);
+      display: grid;
+      gap: 28px;
+    }
+
+    .card {
+      background: var(--card);
+      padding: 20px;
+      border-radius: 14px;
+      border: 1px solid rgba(0, 0, 0, 0.04);
+      box-shadow: 0 8px 20px rgba(100, 40, 80, 0.03);
+    }
+
+    .section-title {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 12px;
+    }
+
+    .section-title h2 {
+      margin: 0;
+      font-size: 18px;
+    }
+
+    ol.steps {
+      padding-left: 18px;
+      margin: 0;
+    }
+
+    ol.steps li {
+      margin: 14px 0;
+    }
+
+    pre.cmd {
+      background: linear-gradient(180deg, #fff 0%, #fff7fb 100%);
+      padding: 12px 14px;
+      border-radius: 10px;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, "Roboto Mono", monospace;
+      font-size: 13px;
+      border: 1px solid rgba(0, 0, 0, 0.04);
+      overflow: auto;
+    }
+
+    .note {
+      font-size: 13px;
+      color: var(--muted);
+      margin-top: 8px;
+    }
+
+    hr.divider {
+      margin: 20px 0;
+      border: none;
+      border-top: 1px dashed rgba(0, 0, 0, 0.06);
+    }
+
+    code.inline {
+      background: rgba(0, 0, 0, 0.03);
+      padding: 2px 6px;
+      border-radius: 6px;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, "Roboto Mono", monospace;
+    }
+
+    .back-button {
+      display: inline-block;
+      align-self: flex-start;
+      margin-bottom: 24px;
+      padding: 10px 18px;
+      background: linear-gradient(135deg, var(--accent-1), var(--accent-2));
+      color: white;
+      border-radius: 12px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 14px;
+      box-shadow: 0 6px 16px rgba(255, 122, 182, 0.25);
+      transition: all 0.2s ease;
+    }
+
+    .back-button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(255, 122, 182, 0.35);
+    }
+
+    .back-button:active {
+      transform: translateY(0);
+      box-shadow: 0 4px 12px rgba(255, 122, 182, 0.25);
+    }
+  </style>
+</head>
+
+<body>
+  <a href="../index.html" class="back-button">← Back to Home</a>
+  <div class="wrap">
+    <main class="card">
+      <div class="section-title">
+        <h2>Challenge 6: Connect to an Arduino</h2>
+      </div>
+
+      <ol class="steps">
+        <li>
+          <strong>Goal:</strong> Connect React to an Arduino using the Web Serial API to display a message on a 7-segment display.
+        </li>
+
+        <li>
+          <strong>Make sure you’re inside your React project:</strong>
+          <pre class="cmd">cd my-app</pre>
+        </li>
+
+        <li>
+          <strong>Create a components folder inside <code class="inline">src</code>:</strong>
+          <pre class="cmd">mkdir src/components</pre>
+        </li>
+
+        <li>
+          <strong>Create a new file inside components called <code class="inline">ArduinoControl.js</code>:</strong>
+        </li>
+
+        <li>
+          <strong>Copy and paste the following code into <code class="inline">ArduinoControl.js</code>:</strong>
+          <pre class="cmd">
+import React, { useState } from "react";
+
+function ArduinoControl() {
+  const [port, setPort] = useState(null);
+  const [writer, setWriter] = useState(null);
+
+  const connectToArduino = async () => {
+    try {
+      console.log("Requesting serial port...");
+      const selectedPort = await navigator.serial.requestPort();
+      console.log("Port selected:", selectedPort);
+      await selectedPort.open({ baudRate: 9600 });
+      console.log("Port opened!");
+
+      const textEncoder = new TextEncoderStream();
+      textEncoder.readable.pipeTo(selectedPort.writable);
+      const portWriter = textEncoder.writable.getWriter();
+
+      setPort(selectedPort);
+      setWriter(portWriter);
+
+      console.log("Connected to Arduino!");
+    } catch (err) {
+      console.error("Error connecting to Arduino:", err);
+    }
+  };
+
+  const sendCommand = async (command) => {
+    if (writer) {
+      await writer.write(command + "\n");
+      console.log(`Sent '${command}' to Arduino`);
+    } else {
+      console.log("No connection to Arduino");
+    }
+  };
+
+  return (
+    &lt;div style={{ padding: "20px", fontFamily: "Arial" }}&gt;
+      &lt;h1&gt;The Arduino Controller&lt;/h1&gt;
+      {!port ? (
+        &lt;button onClick={connectToArduino}&gt;Connect to Arduino&lt;/button&gt;
+      ) : (
+        &lt;div&gt;
+          &lt;button onClick={() =&gt; sendCommand("start")} style={{ marginRight: "10px" }}&gt;
+            Start Message
+          &lt;/button&gt;
+          &lt;button onClick={() =&gt; sendCommand("stop")}&gt;Stop Message&lt;/button&gt;
+        &lt;/div&gt;
+      )}
+    &lt;/div&gt;
+  );
+}
+
+export default ArduinoControl;
+          </pre>
+        </li>
+
+        <li>
+          <strong>Update your <code class="inline">App.js</code> file:</strong>
+          <pre class="cmd">
+// src/App.js
+import React from "react";
+import ArduinoControl from "./components/ArduinoControl";
+
+function App() {
+  return (
+    &lt;div&gt;
+      &lt;ArduinoControl /&gt;
+    &lt;/div&gt;
+  );
+}
+
+export default App;
+          </pre>
+        </li>
+
+        <li>
+          <strong>Run your app:</strong>
+          <pre class="cmd">npm start</pre>
+        </li>
+
+        <li>
+          <strong>When the app loads:</strong>
+          <ul>
+            <li>Click “Connect to Arduino”.</li>
+            <li>Select your Arduino port (e.g., <code class="inline">cu.usbmodem2101</code>).</li>
+            <li>The Arduino should light up when connected!</li>
+            <li>Click “Start Message” to display text on your 7-segment display.</li>
+          </ul>
+        </li>
+
+        <li>
+          <strong>Change the message on your Arduino:</strong>
+          <div class="note">Download the Arduino IDE from <a href="https://www.arduino.cc/en/software" target="_blank">https://www.arduino.cc/en/software</a></div>
+        </li>
+
+        <li>
+          <strong>Copy and paste this Arduino sketch into a new file:</strong>
+          <pre class="cmd">
+// Pin setup
+int a = 7;
+int b = 6;
+int c = 5;
+int d = 11;
+int e = 10;
+int f = 8;
+int g = 9;
+int dp = 4;
+
+// Serial input
+String inputString = "";
+bool programRunning = false;
+
+// ===== DISPLAY LETTERS =====
+void displayY() { digitalWrite(f, HIGH); digitalWrite(g, HIGH); digitalWrite(b, HIGH); digitalWrite(c, HIGH); digitalWrite(d, HIGH); }
+void displayA() { digitalWrite(f, HIGH); digitalWrite(e, HIGH); digitalWrite(g, HIGH); digitalWrite(a, HIGH); digitalWrite(b, HIGH); digitalWrite(c, HIGH); }
+void displayL() { digitalWrite(e, HIGH); digitalWrite(f, HIGH); digitalWrite(a, HIGH); digitalWrite(b, HIGH); digitalWrite(c, HIGH); }
+void displayO() { digitalWrite(f, HIGH); digitalWrite(e, HIGH); digitalWrite(d, HIGH); digitalWrite(a, HIGH); digitalWrite(b, HIGH); digitalWrite(c, HIGH); }
+void clearDisplay() { digitalWrite(a, LOW); digitalWrite(b, LOW); digitalWrite(g, LOW); digitalWrite(c, LOW); digitalWrite(d, LOW); digitalWrite(e, LOW); digitalWrite(f, LOW); }
+
+void showMessage() {
+  clearDisplay();
+  displayY();
+  delay(2000);
+  clearDisplay();
+  displayA();
+  delay(2000);
+  clearDisplay();
+  displayL();
+  delay(2000);
+  clearDisplay();
+  displayO();
+  delay(2000);
+  clearDisplay();
+}
+
+void setup() {
+  for (int i = 4; i <= 11; i++) {
+    pinMode(i, OUTPUT);
+  }
+  Serial.begin(9600);
+}
+
+void loop() {
+  if (Serial.available() > 0) {
+    char received = (char)Serial.read();
+    if (received == '\n') {
+      inputString.trim();
+      if (inputString == "start") {
+        programRunning = true;
+      }
+      if (inputString == "stop") {
+        programRunning = false;
+        clearDisplay();
+      }
+      inputString = "";
+    } else {
+      inputString += received;
+    }
+  }
+
+  if (programRunning) {
+    showMessage();
+    programRunning = false;
+  }
+}
+          </pre>
+        </li>
+
+        <li>
+          <strong>Learn about 7 Segment Displays:</strong>
+          <div class="note"><a href="https://circuitstoday.com/arduino-and-7-segment-display" target="_blank">https://circuitstoday.com/arduino-and-7-segment-display</a></div>
+        </li>
+
+        <li>
+          <strong>Stop your app when done:</strong>
+          <pre class="cmd">Ctrl + C</pre>
+        </li>
+      </ol>
+    </main>
+  </div>
+</body>
+
+</html>
