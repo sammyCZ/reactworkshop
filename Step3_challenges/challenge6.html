@@ -152,7 +152,7 @@
 
       <ol class="steps">
         <li>
-          <strong>Make sure you’re inside your React project:</strong>
+          <strong>Make sure you’re inside your React project (not the project root):</strong>
           <pre class="cmd">cd my-app</pre>
         </li>
 
@@ -163,7 +163,10 @@
 
         <li>
           <strong>Create a new file inside components called <code class="inline">ArduinoControl.js</code>:</strong>
-        </li>
+          <pre class="cmd">
+touch ArduinoControl.js
+          </pre>
+        </li>       
 
         <li>
           <strong>Copy and paste the following code into <code class="inline">ArduinoControl.js</code>:</strong>
@@ -247,6 +250,9 @@ export default App;
         <li>
           <strong>Run your app:</strong>
           <pre class="cmd">npm start</pre>
+          <pre class="note">Make sure the app loads in Chrome, Microsoft Edge, or Opera, not Safari, Firefox, or Mobile Browsers
+Use <code class="inline">BROWSER=browserName npm start</code> to launch the app in a specific browser
+          </pre>
         </li>
 
         <li>
@@ -255,14 +261,14 @@ export default App;
             <li>Click “Connect to Arduino”.</li>
             <li>Select your Arduino port (e.g., <code class="inline">cu.usbmodem2101</code>).</li>
             <li>The Arduino should light up when connected!</li>
-            <li>Click “Start Message” to display text on your 7-segment display.</li>
+            <li>Click “Start Message” to display text on the 7-segment display.</li>
           </ul>
         </li>
 
         <li>
-          <strong>Change the message on your Arduino:</strong>
-          <div class="note">Download the Arduino IDE from <a href="https://www.arduino.cc/en/software" target="_blank">https://www.arduino.cc/en/software</a></div>
-        </li>
+          <strong>[BONUS] Change the message on the Arduino:</strong>
+          <pre class="cmd">Download the Arduino IDE from <a href="https://www.arduino.cc/en/software" target="_blank">https://www.arduino.cc/en/software</a></pre>
+        </li>        
 
         <li>
           <strong>Copy and paste this Arduino sketch into a new file:</strong>
@@ -339,8 +345,8 @@ void loop() {
 
         <li>
           <strong>Learn about 7 Segment Displays:</strong>
-          <div class="note"><a href="https://circuitstoday.com/arduino-and-7-segment-display" target="_blank">https://circuitstoday.com/arduino-and-7-segment-display</a></div>
-        </li>
+          <pre class="cmd">Circuits Today Tutorial: <a href="https://circuitstoday.com/arduino-and-7-segment-display" target="_blank">https://circuitstoday.com/arduino-and-7-segment-display</a></pre>
+        </li>         
 
         <li>
           <strong>Stop your app when done:</strong>
