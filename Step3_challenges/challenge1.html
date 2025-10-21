@@ -233,9 +233,8 @@ const VideoPlayer = () =&gt; {
       &lt;iframe
         width="720"
         height="405"
-        src="video link"
+        src="https://www.youtube.com/embed/YouTubeVideoID"
         title="YouTube video player"
-        frameBorder="0"
         allow="autoplay; encrypted-media"
         allowFullScreen
       &gt;&lt;/iframe&gt;
@@ -245,8 +244,16 @@ const VideoPlayer = () =&gt; {
 
 export default VideoPlayer;
               </pre>
-              <div class="note">Replace <code class="inline">"video link"</code> with the URL of the YouTube or external
-                video you want to use.</div>
+            </li>
+            
+            <li>
+              <strong>Add your link in <code class="inline">VideoPlayer.js:</code></strong>
+              <pre class="cmd">Replace <code class="inline">"YouTubeVideoID"</code> with the your desired video's unique ID (found in the link). 
+
+If your video is from YouTube, it is the string of numbers and letters after <code class="inline">https://www.youtube.com/watch?v=</code></pre>
+              
+              <div class="note">For example: The link <code class="inline">https://www.youtube.com/watch?v=nZFNut0RGlQ</code>
+                is going to look like<code class="inline">src="https://www.youtube.com/embed/nZFNut0RGlQ"</code> in VideoPlayer.js</div>
             </li>
 
             <li>
